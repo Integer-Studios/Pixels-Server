@@ -19,7 +19,7 @@ public abstract class Packet {
 			servlet.getOutput().writeInt(packet.userID);
 
 			packet.writeAuxiliaryVariables(servlet.getOutput());
-			packet.writeData(servlet.getOutput());
+			packet.writeData(servlet);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public abstract class Packet {
 				packet.servletLogin = servlet;
 				
 			packet.readAuxiliaryVariables(servlet.getInput());
-			packet.readData(servlet.getInput());
+			packet.readData(servlet);
 
 			return packet;
 
@@ -253,9 +253,9 @@ public abstract class Packet {
 
 	}
 	
-	public abstract void writeData(DataOutputStream output) throws IOException;
+	public abstract void writeData(CommunicationServlet servlet) throws IOException;
 
-	public abstract void readData(DataInputStream input) throws IOException;
+	public abstract void readData(CommunicationServlet servlet) throws IOException;
 	
 	public CommunicationServlet servletLogin;
 	public int id;
@@ -271,7 +271,11 @@ public abstract class Packet {
 	static {
 		
 		packetMap.put(0, PacketBlank.class);
-
+		packetMap.put(1, PacketLogin.class);
+		packetMap.put(2, PacketSpawn.class);
+		packetMap.put(3, PacketWorldData.class);
+		packetMap.put(4, PacketPlayerDidSpawn.class);
+		
 	}
 	
 }

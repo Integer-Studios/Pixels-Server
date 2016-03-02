@@ -25,8 +25,6 @@ public class Chunk {
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 2));
 				else if (r.nextInt(10) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 1));
-				else
-					pieces.put(getLocalLocationIndex(x, y), null);
 				
 			}
 		}
@@ -35,7 +33,10 @@ public class Chunk {
 	public void update(World w) {
 		for (int i = 0; i < 256; i++) {
 			tiles.get(i).update(w);
-			pieces.get(i).update(w);
+			
+			Piece p = pieces.get(i);
+			if (p != null)
+				p.update(w);
 		}
 	}
 	

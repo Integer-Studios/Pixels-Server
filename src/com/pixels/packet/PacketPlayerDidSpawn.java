@@ -4,12 +4,10 @@ import java.io.IOException;
 
 import com.pixels.communication.CommunicationServlet;
 
-public class PacketBlank extends Packet {
-
-	public PacketBlank() {
-		
-		this.id = 0;
-		
+public class PacketPlayerDidSpawn extends Packet {
+	
+	public PacketPlayerDidSpawn() {
+		this.id = 4;
 	}
 
 	@Override
@@ -21,8 +19,7 @@ public class PacketBlank extends Packet {
 	@Override
 	public void readData(CommunicationServlet servlet) throws IOException {
 		// TODO Auto-generated method stub
-		
+		PacketHandler.handlePacketPlayerDidSpawn();
 	}
 
-	
 }

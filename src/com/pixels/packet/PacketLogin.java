@@ -4,25 +4,23 @@ import java.io.IOException;
 
 import com.pixels.communication.CommunicationServlet;
 
-public class PacketBlank extends Packet {
-
-	public PacketBlank() {
-		
-		this.id = 0;
-		
+public class PacketLogin extends Packet {
+	
+	public PacketLogin() {
+		this.id = 1;
 	}
 
 	@Override
 	public void writeData(CommunicationServlet servlet) throws IOException {
-		// TODO Auto-generated method stub
-		
+		servlet.getOutput().writeInt(serverID);
 	}
 
 	@Override
 	public void readData(CommunicationServlet servlet) throws IOException {
-		// TODO Auto-generated method stub
-		
+		// user ID sent in all packets
+		PacketHandler.handlePacketLogin(this, servlet);
 	}
-
 	
+	public int serverID;
+
 }
