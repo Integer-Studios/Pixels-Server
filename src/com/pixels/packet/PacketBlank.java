@@ -13,15 +13,12 @@ public class PacketBlank extends Packet {
 
 	@Override
 	public void writeData(DataOutputStream output) {
-		// TODO Auto-generated method stub
-		System.out.println("writing blank packet");
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void readData(DataInputStream input) {
 		// TODO Auto-generated method stub
-		System.out.println("reading blank packet");
 	}
 	
 }
