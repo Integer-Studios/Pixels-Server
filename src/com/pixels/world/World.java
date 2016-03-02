@@ -25,8 +25,6 @@ public class World {
 	}
 	
 	public void update() {
-		System.out.println(getPieceID(2, 2));
-
 		for (int i = 0; i < chunks.size(); i++) {
 			chunks.get(i).update(this);
 		}
