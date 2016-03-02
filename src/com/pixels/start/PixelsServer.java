@@ -1,6 +1,8 @@
 package com.pixels.start;
 
 import com.pixels.communication.CommunicationServer;
+import com.pixels.world.World;
+import com.pixels.world.WorldThread;
 
 public class PixelsServer extends Thread {
 	
@@ -10,16 +12,19 @@ public class PixelsServer extends Thread {
 	
 	public void run () {
 				
+		// Start Client Listening Thread
 		CommunicationServer server = new CommunicationServer(port);
 		new Thread(server).start();
 
-//		world = new WorldServer();
-//		
-//		game = new GameServer(world);
-//		game.start();
+		// Start World Thread
+		world = new World(4, 4);
+		worldThread = new WorldThread(world);
+		worldThread.start();
+
 		
 	}
 	
 	public static int port = 25565;
-
+	public static World world;
+	public static WorldThread worldThread;
 }
