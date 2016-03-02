@@ -76,11 +76,12 @@ public class PacketWorldData extends Packet {
 			servlet.getOutput().writeInt(0);
 	}
 	
-	public void writeEntity(Entity entity, CommunicationServlet servlet) throws IOException {
-		servlet.getOutput().writeInt(entity.serverID);
-		servlet.getOutput().writeInt(entity.id);
-		servlet.getOutput().writeInt(entity.posX);
-		servlet.getOutput().writeInt(entity.posY);
+	public void writeEntity(Entity e, CommunicationServlet servlet) throws IOException {
+		servlet.getOutput().writeInt(e.serverID);
+		servlet.getOutput().writeInt(e.id);
+		servlet.getOutput().writeInt(e.posX);
+		servlet.getOutput().writeInt(e.posY);
+		e.writeEntityData(servlet);
 	}
 	
 	public ConcurrentHashMap<Integer,Chunk> chunks = new ConcurrentHashMap<Integer,Chunk>();

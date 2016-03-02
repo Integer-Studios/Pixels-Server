@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.entity.Entity;
+import com.pixels.entity.EntityPlayer;
 import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
 import com.pixels.world.Chunk;
@@ -12,7 +13,7 @@ public class PacketHandler {
 	
 	public static void handlePacketLogin(PacketLogin packet, CommunicationServlet servlet) {
 		
-		Entity e = new Entity(0, 0);
+		EntityPlayer e = new EntityPlayer(0, 0, true);
 		packet.serverID = e.getServerID();
 		PlayerManager.addPlayer(packet.userID, packet.serverID);
 		

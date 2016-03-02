@@ -3,11 +3,15 @@ package com.pixels.communication;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+
+import com.pixels.packet.Packet;
 
 public class CommunicationServer implements Runnable {
 	
 	public CommunicationServer(int p) {
 		port = p;
+		connections = new ArrayList<CommunicationServlet>();
 	}
 	
 	@Override
@@ -34,6 +38,7 @@ public class CommunicationServer implements Runnable {
 				clientSocket = serverSocket.accept();
 				clientSocket.setTcpNoDelay(true);
 				CommunicationServlet servlet = new CommunicationServlet(clientSocket);
+				connections.add(servlet);
 				servlet.start();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -52,7 +57,14 @@ public class CommunicationServer implements Runnable {
 
 	}
 	
+	public void broadcastPacket(Packet p) {
+		for (CommunicationServlet servlet : connections) {
+			servlet.addPacket(p);
+		}
+	}
+	
 	public int port;
 	public boolean listen = true;
+	public ArrayList<CommunicationServlet> connections;
 
 }

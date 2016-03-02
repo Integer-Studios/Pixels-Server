@@ -13,7 +13,7 @@ public class PixelsServer extends Thread {
 	public void run () {
 				
 		// Start Client Listening Thread
-		CommunicationServer server = new CommunicationServer(port);
+		server = new CommunicationServer(port);
 		new Thread(server).start();
 
 		// Start World Thread
@@ -27,4 +27,5 @@ public class PixelsServer extends Thread {
 	public static int port = 25565;
 	public static World world;
 	public static WorldThread worldThread;
+	public static CommunicationServer server;
 }
