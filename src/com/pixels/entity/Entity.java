@@ -18,13 +18,21 @@ public class Entity {
 			serverID = PixelsServer.world.propogateEntity(this);
 	}
 	
-	public void setPosition(int x, int y) {
+	public void initializePosition(int x, int y) {
+		//used only for pre propogation
+		posX = x;
+		posY = y;
+	}
+	
+	public void setPosition(int x, int y, World w) {
+		//Must get called EVERY time entity moves
+		w.moveEntity(serverID, posX, posY, x, y);
 		posX = x;
 		posY = y;
 	}
 
 	public void update(World w) {
-		
+
 	}
 
 	public int getServerID() {
