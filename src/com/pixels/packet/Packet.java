@@ -37,6 +37,7 @@ public abstract class Packet {
 
 			int id = servlet.getInput().readInt();
 			int userID = servlet.getInput().readInt();
+			
 			Packet packet = getPacket(id);
 			
 			if (packet == null) {
@@ -275,6 +276,8 @@ public abstract class Packet {
 		packetMap.put(2, PacketSpawn.class);
 		packetMap.put(3, PacketWorldData.class);
 		packetMap.put(4, PacketPlayerDidSpawn.class);
+		packetMap.put(5, PacketUpdateEntity.class);
+		packetMap.put(6, PacketSpawnEntity.class);
 		
 	}
 	

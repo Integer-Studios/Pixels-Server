@@ -3,6 +3,10 @@ package com.pixels.world;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.entity.Entity;
+import com.pixels.entity.EntityPlayer;
+import com.pixels.packet.PacketSpawnEntity;
+import com.pixels.packet.PacketUpdateEntity;
+import com.pixels.player.PlayerManager;
 
 public class World {
 	
@@ -31,11 +35,21 @@ public class World {
 		}
 	}
 	
+	public int propogatePlayer(EntityPlayer entity) {
+		int id = entities.size();
+		entity.serverID = id;
+		entities.put(id, entity);
+		entityPositions.put(getLocationIndex(entity.posX, entity.posY), id);
+		PlayerManager.broadcastPacketExcludingPlayer(new PacketSpawnEntity(entity), entity.userID);
+		return id;
+	}
+	
 	public int propogateEntity(Entity entity) {
 		int id = entities.size();
 		entity.serverID = id;
 		entities.put(id, entity);
 		entityPositions.put(getLocationIndex(entity.posX, entity.posY), id);
+		PlayerManager.broadcastPacket(new PacketSpawnEntity(entity));
 		return id;
 	}
 	
@@ -51,9 +65,41 @@ public class World {
 		return entities.get(entityID);
 	}
 	
-	public void moveEntity(int id, int x1, int y1, int x2, int y2) {
-		entityPositions.remove(getLocationIndex(x1, y1));
-		entityPositions.put(getLocationIndex(x2, y2), id);
+	public void moveEntity(int id, int x, int y) {
+		
+		Entity e = getEntity(id);
+				
+		entityPositions.remove(getLocationIndex(e.posX, e.posY));
+		
+		e.posX = x;
+		e.posY = y;
+		
+		entityPositions.put(getLocationIndex(e.posX, e.posY), id);
+		
+		//need to specify to only people who have entity loaded
+		PlayerManager.broadcastPacket(new PacketUpdateEntity(e));
+		
+	}
+	
+	public void moveEntityFromPacket(int id, int x, int y) {
+		
+		Entity e = getEntity(id);
+				
+		entityPositions.remove(getLocationIndex(e.posX, e.posY));
+		
+		e.posX = x;
+		e.posY = y;
+		
+		entityPositions.put(getLocationIndex(e.posX, e.posY), id);
+		
+		if (e instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer)e;
+			PlayerManager.broadcastPacketExcludingPlayer(new PacketUpdateEntity(e), player.userID);
+		} else {
+			//need to specify to only people who have entity loaded
+			PlayerManager.broadcastPacket(new PacketUpdateEntity(e));
+		}
+		
 	}
 	
 	public void setPieceID(int x, int y, int id) {
@@ -89,24 +135,26 @@ public class World {
 
 	public ConcurrentHashMap<Integer, Entity> getLoadedEntities(Entity e) {
 		
-		ConcurrentHashMap<Integer, Entity> loadedEntities = new ConcurrentHashMap<Integer, Entity>();
+//		ConcurrentHashMap<Integer, Entity> loadedEntities = new ConcurrentHashMap<Integer, Entity>();
+//		
+//		int chunkX = e.posX >> 4;
+//		int chunkY = e.posY >> 4;
+//		int x1 = (chunkX-2) << 4;
+//		int y1 = (chunkY-2) << 4;
+//		int x2 = (chunkX+1) << 4;
+//		int y2 = (chunkY+1) << 4;
+//		for (int y = y1; y < y2; y++) {
+//			for (int x = x1; x < x2; x++) {
+//				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
+//					Integer i = entityPositions.get(getLocationIndex(x, y));
+//					if (i != null)
+//						loadedEntities.put(i, entities.get(i));
+//				}
+//			}
+//		}
+//		return loadedEntities;
 		
-		int chunkX = e.posX >> 4;
-		int chunkY = e.posY >> 4;
-		int x1 = (chunkX-2) << 4;
-		int y1 = (chunkY-2) << 4;
-		int x2 = (chunkX+1) << 4;
-		int y2 = (chunkY+1) << 4;
-		for (int y = y1; y < y2; y++) {
-			for (int x = x1; x < x2; x++) {
-				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
-					Integer i = entityPositions.get(getLocationIndex(x, y));
-					if (i != null)
-						loadedEntities.put(i, entities.get(i));
-				}
-			}
-		}
-		return loadedEntities;
+		return entities;
 	}
 	
 	private int getChunkIndex(int chunkX, int chunkY) {

@@ -19,7 +19,7 @@ public class PacketPlayerDidSpawn extends Packet {
 	@Override
 	public void readData(CommunicationServlet servlet) throws IOException {
 		// TODO Auto-generated method stub
-		PacketHandler.handlePacketPlayerDidSpawn();
+		PacketHandler.handlePacketPlayerDidSpawn(this);
 	}
 
 }

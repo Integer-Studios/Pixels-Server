@@ -3,17 +3,19 @@ package com.pixels.packet;
 import java.io.IOException;
 
 import com.pixels.communication.CommunicationServlet;
-import com.pixels.entity.Entity;
-import com.pixels.player.PlayerManager;
+import com.pixels.entity.EntityPlayer;
 import com.pixels.start.PixelsServer;
 
 public class PacketSpawn extends Packet {
 	
 	public PacketSpawn() {
 		this.id = 2;
+	}
+	
+	public PacketSpawn(EntityPlayer player) {
+		this.id = 2;
 		worldWidth = PixelsServer.world.chunkWidth;
 		worldWidth = PixelsServer.world.chunkHeight;
-		Entity player = (PixelsServer.world.getEntity(PlayerManager.players.get(userID)));
 		playerPosX = player.posX;
 		playerPosY = player.posY;
 	}
