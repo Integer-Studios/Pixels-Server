@@ -15,7 +15,7 @@ public class Entity {
 		posX = x;
 		posY = y;
 		if (prop)
-			serverID = PixelsServer.world.propogateEntity(this);
+			PixelsServer.world.propogateEntity(this);
 	}
 	
 	public void initializePosition(int x, int y) {

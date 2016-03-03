@@ -3,6 +3,7 @@ package com.pixels.world;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.pixels.entity.Entity;
 import com.pixels.piece.Piece;
 import com.pixels.tile.Tile;
 
@@ -31,13 +32,27 @@ public class Chunk {
 	}
 	
 	public void update(World w) {
-		for (int i = 0; i < 256; i++) {
-			tiles.get(i).update(w);
-			
-			Piece p = pieces.get(i);
-			if (p != null)
-				p.update(w);
+		
+		for (int y = 0; y < 16; y++) {
+			for (int x = 0; x < 16; x++) {
+				
+				int i = getLocalLocationIndex(x, y);
+				
+				tiles.get(i).update(w);
+				Piece p = pieces.get(i);
+				if (p != null)
+					p.update(w);
+				
+				int globalX = (chunkX<<4)+x;
+				int globalY = (chunkY<<4)+y;
+				Entity e = w.getEntity(globalX, globalY);
+				if (e != null)
+					e.update(w);
+				
+				
+			}
 		}
+
 	}
 	
 	public void setPieceID(int x, int y, int id) {

@@ -25,13 +25,15 @@ public class World {
 	}
 	
 	public void update() {
-		for (int i = 0; i < chunks.size(); i++) {
-			chunks.get(i).update(this);
+
+		for (Chunk chunk : chunks.values()) {
+			chunk.update(this);
 		}
 	}
 	
 	public int propogateEntity(Entity entity) {
 		int id = entities.size();
+		entity.serverID = id;
 		entities.put(id, entity);
 		entityPositions.put(getLocationIndex(entity.posX, entity.posY), id);
 		return id;
@@ -67,13 +69,44 @@ public class World {
 	}
 	
 	public ConcurrentHashMap<Integer, Chunk> getLoadedChunks(Entity e) {
-		// TODO Auto-generated method stub
-		return chunks;
+		
+		ConcurrentHashMap<Integer, Chunk> loadedChunks = new ConcurrentHashMap<Integer, Chunk>();
+		
+		int chunkX = e.posX >> 4;
+		int chunkY = e.posY >> 4;
+		for (int y = chunkY-1; y <= chunkY+1; y++) {
+			for (int x = chunkX-1; x <= chunkX+1; x++) {
+				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
+					Chunk c = chunks.get(getChunkIndex(x, y));
+					if (c != null) {
+						loadedChunks.put(getChunkIndex(x, y), c);
+					}
+				}
+			}
+		}
+		return loadedChunks;
 	}
 
 	public ConcurrentHashMap<Integer, Entity> getLoadedEntities(Entity e) {
-		// TODO Auto-generated method stub
-		return entities;
+		
+		ConcurrentHashMap<Integer, Entity> loadedEntities = new ConcurrentHashMap<Integer, Entity>();
+		
+		int chunkX = e.posX >> 4;
+		int chunkY = e.posY >> 4;
+		int x1 = (chunkX-2) << 4;
+		int y1 = (chunkY-2) << 4;
+		int x2 = (chunkX+1) << 4;
+		int y2 = (chunkY+1) << 4;
+		for (int y = y1; y < y2; y++) {
+			for (int x = x1; x < x2; x++) {
+				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
+					Integer i = entityPositions.get(getLocationIndex(x, y));
+					if (i != null)
+						loadedEntities.put(i, entities.get(i));
+				}
+			}
+		}
+		return loadedEntities;
 	}
 	
 	private int getChunkIndex(int chunkX, int chunkY) {

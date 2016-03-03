@@ -17,7 +17,7 @@ public class PixelsServer extends Thread {
 		new Thread(server).start();
 
 		// Start World Thread
-		world = new World(4, 4);
+		world = new World(5, 5);
 		worldThread = new WorldThread(world);
 		worldThread.start();
 
