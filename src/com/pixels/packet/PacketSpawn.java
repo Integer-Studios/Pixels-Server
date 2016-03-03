@@ -3,7 +3,7 @@ package com.pixels.packet;
 import java.io.IOException;
 
 import com.pixels.communication.CommunicationServlet;
-import com.pixels.entity.EntityPlayer;
+import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.start.PixelsServer;
 
 public class PacketSpawn extends Packet {
@@ -12,7 +12,7 @@ public class PacketSpawn extends Packet {
 		this.id = 2;
 	}
 	
-	public PacketSpawn(EntityPlayer player) {
+	public PacketSpawn(EntityOnlinePlayer player) {
 		this.id = 2;
 		worldWidth = PixelsServer.world.chunkWidth;
 		worldWidth = PixelsServer.world.chunkHeight;

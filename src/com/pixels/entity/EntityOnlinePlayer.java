@@ -2,14 +2,14 @@ package com.pixels.entity;
 
 import com.pixels.start.PixelsServer;
 
-public class EntityPlayer extends Entity {
+public class EntityOnlinePlayer extends Entity {
 	
-	public EntityPlayer() {
-		this.id = 1;
+	public EntityOnlinePlayer() {
+		this.id = 2;
 	}
 	
-	public EntityPlayer(int x, int y, boolean prop, int uid) {
-		this.id = 1;
+	public EntityOnlinePlayer(int x, int y, boolean prop, int uid) {
+		this.id = 2;
 		posX = x;
 		posY = y;
 		userID = uid;

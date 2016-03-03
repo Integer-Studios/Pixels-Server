@@ -62,8 +62,8 @@ public class Entity {
 	static {
 		
 		entityMap.put(0, EntityBlank.class);
-		entityMap.put(1, EntityPlayer.class);
-//		entityMap.put(2, EntityOnlinePlayer.class); client only
+//		entityMap.put(1, EntityPlayer.class); client only
+		entityMap.put(2, EntityOnlinePlayer.class);
 
 	}
 

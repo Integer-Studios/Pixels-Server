@@ -3,7 +3,7 @@ package com.pixels.world;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.entity.Entity;
-import com.pixels.entity.EntityPlayer;
+import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.packet.PacketSpawnEntity;
 import com.pixels.packet.PacketUpdateEntity;
 import com.pixels.player.PlayerManager;
@@ -35,7 +35,7 @@ public class World {
 		}
 	}
 	
-	public int propogatePlayer(EntityPlayer entity) {
+	public int propogatePlayer(EntityOnlinePlayer entity) {
 		int id = entities.size();
 		entity.serverID = id;
 		entities.put(id, entity);
@@ -82,7 +82,7 @@ public class World {
 	}
 	
 	public void moveEntityFromPacket(int id, int x, int y) {
-		
+				
 		Entity e = getEntity(id);
 				
 		entityPositions.remove(getLocationIndex(e.posX, e.posY));
@@ -92,8 +92,8 @@ public class World {
 		
 		entityPositions.put(getLocationIndex(e.posX, e.posY), id);
 		
-		if (e instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer)e;
+		if (e instanceof EntityOnlinePlayer) {
+			EntityOnlinePlayer player = (EntityOnlinePlayer)e;
 			PlayerManager.broadcastPacketExcludingPlayer(new PacketUpdateEntity(e), player.userID);
 		} else {
 			//need to specify to only people who have entity loaded

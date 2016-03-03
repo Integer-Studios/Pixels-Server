@@ -3,8 +3,8 @@ package com.pixels.packet;
 import java.io.IOException;
 
 import com.pixels.communication.CommunicationServlet;
-import com.pixels.entity.Entity;
 
+//both are entityonlineplayer now
 public class PacketUpdatePlayer extends Packet{
 	
 	public PacketUpdatePlayer() {
