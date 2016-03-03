@@ -47,4 +47,10 @@ public class PacketHandler {
 		
 	}
 
+	public static void handlePacketUpdatePlayer(PacketUpdatePlayer packet) {
+
+		PixelsServer.world.moveEntityFromPacket(packet.serverID, packet.posX, packet.posY);
+		
+	}
+
 }

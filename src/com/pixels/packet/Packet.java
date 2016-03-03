@@ -278,6 +278,7 @@ public abstract class Packet {
 		packetMap.put(4, PacketPlayerDidSpawn.class);
 		packetMap.put(5, PacketUpdateEntity.class);
 		packetMap.put(6, PacketSpawnEntity.class);
+		packetMap.put(7, PacketUpdatePlayer.class);
 		
 	}
 	
