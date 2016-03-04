@@ -47,4 +47,12 @@ public class PacketHandler {
 		
 	}
 
+	public static void handlePacketUpdateWorld(PacketUpdateWorld packet, CommunicationServlet servlet) {
+		// TODO Auto-generated method stub
+		Entity e = PixelsServer.world.getEntity(PlayerManager.getPlayer(packet.userID));
+		packet.chunks = PixelsServer.world.getLoadedChunks(e);
+		packet.entities = PixelsServer.world.getLoadedEntities(e);
+		servlet.addPacket(packet);
+	}
+
 }
