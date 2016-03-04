@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.packet.Packet;
+import com.pixels.start.PixelsServer;
 
 public class PlayerManager {
 	
@@ -29,8 +30,18 @@ public class PlayerManager {
 		}
 	}
 	
+	public static void logout(int userID) {
+
+		PixelsServer.world.entities.remove(players.get(userID));
+		players.remove(userID);
+		connections.remove(userID);
+		System.out.println("User Logged Out: " + userID);
+		
+	}
+	
 	public static ConcurrentHashMap<Integer, Integer> players = new ConcurrentHashMap<Integer, Integer>();
 	public static ConcurrentHashMap<Integer, CommunicationServlet> connections = new ConcurrentHashMap<Integer, CommunicationServlet>();
+	
 
 
 }

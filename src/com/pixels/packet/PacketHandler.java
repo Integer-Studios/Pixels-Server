@@ -1,6 +1,5 @@
 package com.pixels.packet;
 
-import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.communication.CommunicationServlet;
@@ -14,7 +13,6 @@ public class PacketHandler {
 	
 	public static void handlePacketLogin(PacketLogin packet, CommunicationServlet servlet) {
 				
-		Random r = new Random();
 		EntityOnlinePlayer e = new EntityOnlinePlayer(39, 39, true, packet.userID);
 		packet.serverID = e.getServerID();
 		PlayerManager.addPlayer(packet.userID, packet.serverID, servlet);
