@@ -25,7 +25,7 @@ public abstract class Packet {
 			e.printStackTrace();
 			
 			if (servlet.isRunning())
-				servlet.disconnect();
+				servlet.disconnect(false);
 
 		}
 
@@ -59,10 +59,10 @@ public abstract class Packet {
 		} catch (IOException e) {
 			try {
 				if (servlet.isRunning())
-					servlet.disconnect();
+					servlet.disconnect(false);
 			} catch(NullPointerException ex) {
 				ex.printStackTrace();
-				servlet.disconnect();
+				servlet.disconnect(false);
 			}
 		} 
 
@@ -280,7 +280,8 @@ public abstract class Packet {
 		packetMap.put(6, PacketSpawnEntity.class);
 		packetMap.put(7, PacketUpdatePlayer.class);
 		packetMap.put(8, PacketUpdateWorld.class);
-		
+		packetMap.put(9, PacketLogout.class);
+
 	}
 	
 }

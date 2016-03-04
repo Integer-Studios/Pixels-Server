@@ -6,8 +6,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 
 import com.pixels.packet.Packet;
+import com.pixels.packet.PacketLogout;
+import com.pixels.player.PlayerManager;
 import com.pixels.communication.CommunicationServletReaderThread;
 import com.pixels.communication.CommunicationServletWriterThread;
 
@@ -75,7 +80,7 @@ public class CommunicationServlet {
 					output.flush();
 				} catch (IOException e) {
 					if (isRunning()) {
-						disconnect();
+						disconnect(false);
 
 					}
 				}
@@ -89,8 +94,31 @@ public class CommunicationServlet {
 		return false;
 	}
 	
-	public void disconnect() {
+	public void disconnect(boolean packet) {
+		int userID = getKeyByValue(PlayerManager.connections, this);
+		int serverID = PlayerManager.players.get(userID);
+		running = false;
+		if (!packet) {
 		
+			PlayerManager.broadcastPacket(new PacketLogout(userID, serverID));
+
+		} else {
+			
+			PlayerManager.broadcastPacketExcludingPlayer(new PacketLogout(userID, serverID), userID);
+			
+		}
+		
+		PlayerManager.logout(userID);
+		
+	}
+	
+	public static <T, E> T getKeyByValue(Map<T, E> map, E value) {
+	    for (Entry<T, E> entry : map.entrySet()) {
+	        if (Objects.equals(value, entry.getValue())) {
+	            return entry.getKey();
+	        }
+	    }
+	    return null;
 	}
 	
 	public Socket socket;

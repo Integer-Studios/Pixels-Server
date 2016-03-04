@@ -29,7 +29,7 @@ public class CommunicationServletReaderThread extends Thread {
 		}
 		
 		if (servlet.isRunning()) {
-			servlet.disconnect();
+			servlet.disconnect(false);
 		}
 		
 	}
