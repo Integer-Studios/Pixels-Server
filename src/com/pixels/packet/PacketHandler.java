@@ -15,7 +15,7 @@ public class PacketHandler {
 	public static void handlePacketLogin(PacketLogin packet, CommunicationServlet servlet) {
 				
 		Random r = new Random();
-		EntityOnlinePlayer e = new EntityOnlinePlayer(30 + r.nextInt(5), 30 + r.nextInt(5), true, packet.userID);
+		EntityOnlinePlayer e = new EntityOnlinePlayer(39, 39, true, packet.userID);
 		packet.serverID = e.getServerID();
 		PlayerManager.addPlayer(packet.userID, packet.serverID, servlet);
 						
