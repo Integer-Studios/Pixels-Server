@@ -8,6 +8,8 @@ import com.pixels.start.PixelsServer;
 
 public class PacketSpawn extends Packet {
 	
+	//doesn't technically need to send position, client never uses it
+	
 	public PacketSpawn() {
 		this.id = 2;
 	}
@@ -25,8 +27,8 @@ public class PacketSpawn extends Packet {
 		// TODO Auto-generated method stub
 		servlet.getOutput().writeInt(worldWidth);
 		servlet.getOutput().writeInt(worldHeight);
-		servlet.getOutput().writeInt(playerPosX);
-		servlet.getOutput().writeInt(playerPosY);
+		servlet.getOutput().writeFloat(playerPosX);
+		servlet.getOutput().writeFloat(playerPosY);
 	}
 
 	@Override
@@ -35,7 +37,8 @@ public class PacketSpawn extends Packet {
 		
 	}
 	
-	public int worldWidth, worldHeight, playerPosX, playerPosY;
+	public int worldWidth, worldHeight;
+	public float playerPosX, playerPosY;
 
 
 }

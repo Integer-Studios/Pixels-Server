@@ -11,21 +11,27 @@ public class Entity {
 	
 	public Entity() { }
 	
-	public Entity(int x, int y, boolean prop) {
+	public Entity(float x, float y, boolean prop) {
 		posX = x;
 		posY = y;
 		if (prop)
 			PixelsServer.world.propogateEntity(this);
 	}
 	
-	public void setPosition(int x, int y, World w) {
+	public void setPosition(float x, float y) {
 		
-		w.moveEntity(serverID, x, y);
+		posX = x;
+		posY = y;
 	
 	}
 
 	public void update(World w) {
-
+		// keep this at the end
+		updatePositionMap(w);
+	}
+	
+	public void updatePositionMap(World w) {
+		w.updateEntityPositionMap(this);
 	}
 
 	public int getServerID() {
@@ -53,8 +59,9 @@ public class Entity {
 	public void readEntityData(CommunicationServlet servlet) throws IOException {
 		
 	}
-	
-	public int id, posX, posY, serverID;
+		
+	public int id, serverID, positionKey;
+	public float posX, posY;
 	
 	@SuppressWarnings("rawtypes")
 	private static HashMap<Integer, Class> entityMap = new HashMap<Integer, Class>();

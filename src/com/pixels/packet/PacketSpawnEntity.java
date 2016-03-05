@@ -15,6 +15,7 @@ public class PacketSpawnEntity extends Packet {
 		this.id = 6;
 		serverID = e.serverID;
 		entityID = e.id;
+		positionKey = e.positionKey;
 		posX = e.posX;
 		posY = e.posY;
 	}
@@ -24,8 +25,9 @@ public class PacketSpawnEntity extends Packet {
 
 		servlet.getOutput().writeInt(serverID);
 		servlet.getOutput().writeInt(entityID);
-		servlet.getOutput().writeInt(posX);
-		servlet.getOutput().writeInt(posY);
+		servlet.getOutput().writeInt(positionKey);
+		servlet.getOutput().writeFloat(posX);
+		servlet.getOutput().writeFloat(posY);
 		
 	}
 
@@ -35,6 +37,7 @@ public class PacketSpawnEntity extends Packet {
 		
 	}
 	
-	int serverID, entityID, posX, posY;
+	int serverID, entityID, positionKey;
+	float posX, posY;
 
 }

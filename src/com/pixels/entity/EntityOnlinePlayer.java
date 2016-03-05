@@ -8,7 +8,7 @@ public class EntityOnlinePlayer extends Entity {
 		this.id = 2;
 	}
 	
-	public EntityOnlinePlayer(int x, int y, boolean prop, int uid) {
+	public EntityOnlinePlayer(float x, float y, boolean prop, int uid) {
 		this.id = 2;
 		posX = x;
 		posY = y;

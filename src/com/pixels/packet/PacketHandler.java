@@ -34,14 +34,15 @@ public class PacketHandler {
 	}
 
 	public static void handlePacketUpdateEntity(PacketUpdateEntity packet) {
-		
-		PixelsServer.world.moveEntityFromPacket(packet.serverID, packet.posX, packet.posY);
-		
+//		move entity through entity class now, entities update their own position map at the end of update
+		PixelsServer.world.getEntity(packet.serverID).setPosition(packet.posX, packet.posY);
+		PlayerManager.broadcastPacketExcludingPlayer(new PacketUpdateEntity(PixelsServer.world.getEntity(packet.serverID)), packet.userID);
 	}
 
 	public static void handlePacketUpdatePlayer(PacketUpdatePlayer packet) {
-
-		PixelsServer.world.moveEntityFromPacket(packet.serverID, packet.posX, packet.posY);
+//		move entity through entity class now, entities update their own position map at the end of update
+		PixelsServer.world.getEntity(packet.serverID).setPosition(packet.posX, packet.posY);
+		PlayerManager.broadcastPacketExcludingPlayer(new PacketUpdateEntity(PixelsServer.world.getEntity(packet.serverID)), packet.userID);
 		
 	}
 

@@ -79,8 +79,9 @@ public class PacketWorldData extends Packet {
 	public void writeEntity(Entity e, CommunicationServlet servlet) throws IOException {
 		servlet.getOutput().writeInt(e.serverID);
 		servlet.getOutput().writeInt(e.id);
-		servlet.getOutput().writeInt(e.posX);
-		servlet.getOutput().writeInt(e.posY);
+		servlet.getOutput().writeInt(e.positionKey);
+		servlet.getOutput().writeFloat(e.posX);
+		servlet.getOutput().writeFloat(e.posY);
 		e.writeEntityData(servlet);
 	}
 	

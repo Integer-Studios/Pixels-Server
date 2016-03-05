@@ -20,13 +20,14 @@ public class PacketUpdatePlayer extends Packet{
 	public void readData(CommunicationServlet servlet) throws IOException {
 
 		serverID = servlet.getInput().readInt();
-		posX = servlet.getInput().readInt();
-		posY = servlet.getInput().readInt();
+		posX = servlet.getInput().readFloat();
+		posY = servlet.getInput().readFloat();
 		
 		PacketHandler.handlePacketUpdatePlayer(this);
 		
 	}
 	
-	int serverID, posX, posY;
+	int serverID;
+	float posX, posY;
 
 }

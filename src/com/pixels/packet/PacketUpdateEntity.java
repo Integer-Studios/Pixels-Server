@@ -20,10 +20,10 @@ public class PacketUpdateEntity extends Packet {
 
 	@Override
 	public void writeData(CommunicationServlet servlet) throws IOException {
-		
+
 		servlet.getOutput().writeInt(serverID);
-		servlet.getOutput().writeInt(posX);
-		servlet.getOutput().writeInt(posY);
+		servlet.getOutput().writeFloat(posX);
+		servlet.getOutput().writeFloat(posY);
 		
 	}
 
@@ -31,13 +31,14 @@ public class PacketUpdateEntity extends Packet {
 	public void readData(CommunicationServlet servlet) throws IOException {
 
 		serverID = servlet.getInput().readInt();
-		posX = servlet.getInput().readInt();
-		posY = servlet.getInput().readInt();
+		posX = servlet.getInput().readFloat();
+		posY = servlet.getInput().readFloat();
 		
 		PacketHandler.handlePacketUpdateEntity(this);
 		
 	}
 	
-	int serverID, posX, posY;
+	int serverID;
+	public float posX, posY;
 
 }

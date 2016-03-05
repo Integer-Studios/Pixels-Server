@@ -1,6 +1,7 @@
 package com.pixels.packet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.communication.CommunicationServlet;
@@ -129,14 +130,15 @@ public class PacketUpdateWorld extends Packet {
 	public void writeEntity(Entity e, CommunicationServlet servlet) throws IOException {
 		servlet.getOutput().writeInt(e.serverID);
 		servlet.getOutput().writeInt(e.id);
-		servlet.getOutput().writeInt(e.posX);
-		servlet.getOutput().writeInt(e.posY);
+		servlet.getOutput().writeInt(e.positionKey);
+		servlet.getOutput().writeFloat(e.posX);
+		servlet.getOutput().writeFloat(e.posY);
 		e.writeEntityData(servlet);
 	}
 	
 	public int minChunkXLoaded, minChunkYLoaded, maxChunkXLoaded, maxChunkYLoaded;
 	public ConcurrentHashMap<Integer,Chunk> chunks = new ConcurrentHashMap<Integer,Chunk>();
 	public ConcurrentHashMap<Integer,Entity> entities = new ConcurrentHashMap<Integer,Entity>();
-
+	public ConcurrentHashMap<Integer,ArrayList<Integer>> entityPositionMap = new ConcurrentHashMap<Integer,ArrayList<Integer>>();
 
 }
