@@ -1,6 +1,5 @@
 package com.pixels.world;
 
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.entity.Entity;
@@ -14,6 +13,9 @@ public class World {
 		
 		chunkWidth = w;
 		chunkHeight = h;
+		
+		entities = new EntityRegister();
+		
 		generateWorld();
 		
 	}
@@ -34,100 +36,26 @@ public class World {
 			chunk.update(this);
 		}
 		
-		for (Entity entity : entities.values()) {
-			entity.update(this);
-		}
+		entities.update(this);
 	}
 	
-	public int propogatePlayer(EntityOnlinePlayer entity) {
-		// this wont work after entities despawn...entities.size will be wrong for next new index
-		int id = entities.size();
-		entity.serverID = id;
-		entities.put(id, entity);
-		addEntityToPositionMap(entity);
+	public void propogatePlayer(EntityOnlinePlayer entity) {
+		
+		entities.add(entity);
 		PlayerManager.broadcastPacketExcludingPlayer(new PacketSpawnEntity(entity), entity.userID);
-		return id;
+		
 	}
 	
-	public int propogateEntity(Entity entity) {
-		int id = entities.size();
-		entity.serverID = id;
-		entities.put(id, entity);
-		addEntityToPositionMap(entity);
+	public void propogateEntity(Entity entity) {
+		
+		entities.add(entity);
 		PlayerManager.broadcastPacket(new PacketSpawnEntity(entity));
-		return id;
-	}
-	
-	public void addEntityToPositionMap(Entity e) {
-		int key = getLocationIndex(e);
-		e.positionKey = key;
-		ArrayList<Integer> entities = entityPositionMap.get(key);
-		if (entities == null) {
-			entities = new ArrayList<Integer>();
-		}
-		entities.add(e.serverID);
-		entityPositionMap.put(key, entities);
-	}
-	
-	public void removeEntityFromPositionMap(Entity e) {
-		int key = e.positionKey;
-		ArrayList<Integer> entityMap = entityPositionMap.get(key);
-		if (entityMap != null) {
-			int i = entityMap.lastIndexOf(e.serverID);
-			entityMap.remove(i);
-		}
-		entityPositionMap.put(key, entityMap);
-	}
-	
-	public void updateEntityPositionMap(Entity e) {
-		if (e.positionKey != getLocationIndex(e)) {
-			removeEntityFromPositionMap(e);
-			addEntityToPositionMap(e);
-		}
+		
 	}
 
 	public Entity getEntity(int entityID) {
 		return entities.get(entityID);
 	}
-	
-//	Shit at end of entity tick to update their position map
-	
-//	public void moveEntity(int id, float x, float y) {
-//		
-//		Entity e = getEntity(id);
-//				
-//		entityPositions.remove(getEntityLocationIndex(e.posX, e.posY));
-//		
-//		e.posX = x;
-//		e.posY = y;
-//		
-//		entityPositions.put(getEntityLocationIndex(e.posX, e.posY), id);
-//		
-//		//need to specify to only people who have entity loaded
-//		PlayerManager.broadcastPacket(new PacketUpdateEntity(e));
-//		
-//	}
-//	
-//	public void moveEntityFromPacket(int id, float x, float y) {
-//				
-//		Entity e = getEntity(id);
-//				
-//		entityPositions.remove(getEntityLocationIndex(e.posX, e.posY));
-//		
-//		e.posX = x;
-//		e.posY = y;
-//		
-//		entityPositions.put(getEntityLocationIndex(e.posX, e.posY), id);
-//		
-//		if (e instanceof EntityOnlinePlayer) {
-//			EntityOnlinePlayer player = (EntityOnlinePlayer)e;
-//			PlayerManager.broadcastPacketExcludingPlayer(new PacketUpdateEntity(e), player.userID);
-//		} else {
-//			//need to specify to only people who have entity loaded
-//			PlayerManager.broadcastPacket(new PacketUpdateEntity(e));
-//		}
-//		
-//	}
 	
 	public void setPieceID(int x, int y, int id) {
 		getChunk(x, y).setPieceID(x, y, id);
@@ -183,23 +111,17 @@ public class World {
 //		}
 //		return loadedEntities;
 		
-		return entities;
+		return entities.entityIDMap;
 	}
 	
 	private int getChunkIndex(int chunkX, int chunkY) {
 		return chunkY*chunkWidth + chunkX;
 	}
 	
-	private int getLocationIndex(Entity e) {
-		return Math.round(e.posY)*(chunkWidth<<4) + Math.round(e.posX);
-	}
-	
 	public int chunkWidth, chunkHeight;
 	public ConcurrentHashMap<Integer,Chunk> chunks = new ConcurrentHashMap<Integer,Chunk>();
-	public ConcurrentHashMap<Integer,Entity> entities = new ConcurrentHashMap<Integer,Entity>();
-	
-//	map of int location hash to id array
-	public ConcurrentHashMap<Integer,ArrayList<Integer>> entityPositionMap = new ConcurrentHashMap<Integer,ArrayList<Integer>>();
-
+//	public ConcurrentHashMap<Integer,Entity> entities = new ConcurrentHashMap<Integer,Entity>();
+//	public ConcurrentHashMap<Integer,ArrayList<Integer>> entityPositionMap = new ConcurrentHashMap<Integer,ArrayList<Integer>>();
+	public EntityRegister entities;
 
 }

@@ -26,12 +26,7 @@ public class Entity {
 	}
 
 	public void update(World w) {
-		// keep this at the end
-		updatePositionMap(w);
-	}
-	
-	public void updatePositionMap(World w) {
-		w.updateEntityPositionMap(this);
+
 	}
 
 	public int getServerID() {

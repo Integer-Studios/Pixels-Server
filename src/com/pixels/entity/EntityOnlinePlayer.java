@@ -17,6 +17,12 @@ public class EntityOnlinePlayer extends Entity {
 			PixelsServer.world.propogatePlayer(this);
 	}
 	
+	public void setVelocity(float x, float y) {
+		velX = x;
+		velY = y;
+	}
+	
 	public int userID;
+	public float velX, velY;
 
 }
