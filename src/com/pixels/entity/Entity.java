@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.pixels.communication.CommunicationServlet;
+import com.pixels.packet.PacketUpdateEntity;
+import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
 import com.pixels.world.World;
 
@@ -22,11 +24,14 @@ public class Entity {
 		
 		posX = x;
 		posY = y;
+		
+		if (!(this instanceof EntityOnlinePlayer))
+			PlayerManager.broadcastPacket(new PacketUpdateEntity(this));
 	
 	}
 
 	public void update(World w) {
-
+		
 	}
 
 	public int getServerID() {

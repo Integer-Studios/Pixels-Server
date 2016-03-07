@@ -87,22 +87,33 @@ public class EntityRegister {
 	
 	public void removeEntityFromPositionMap(Entity e) {
 		int key = e.positionKey;
-		ArrayList<Integer> entityMap = entityPositionMap.get(key);
-		if (entityMap != null) {
-			int i = entityMap.lastIndexOf(e.serverID);
-			entityMap.remove(i);
+		ArrayList<Integer> entityList = entityPositionMap.get(key);
+		if (entityList != null) {
+			Object[] ids = entityList.toArray();
+			entityList = new ArrayList<Integer>();
+			for (int a = 0; a < ids.length; a++) {
+				int i = (int) ids[a];
+				if (i != e.serverID)
+					entityList.add(i);
+			}
 		}
-		entityPositionMap.put(key, entityMap);
+		entityPositionMap.put(key, entityList);
 	}
 	
 	public void removeEntityFromPositionMap(int id) {
 		Entity e = entityIDMap.get(id);
 		int key = e.positionKey;
-		ArrayList<Integer> entities = entityPositionMap.get(key);
-		if (entities != null) {
-			entities.remove(e.serverID);
+		ArrayList<Integer> entityList = entityPositionMap.get(key);
+		if (entityList != null) {
+			Object[] ids = entityList.toArray();
+			entityList = new ArrayList<Integer>();
+			for (int a = 0; a < ids.length; a++) {
+				int i = (int) ids[a];
+				if (i != e.serverID)
+					entityList.add(i);
+			}
 		}
-		entityPositionMap.put(key, entities);
+		entityPositionMap.put(key, entityList);
 	}
 	
 	public void updatePosition(Entity e) {
@@ -113,11 +124,7 @@ public class EntityRegister {
 	}
 	
 	public void updatePosition(int i) {
-		Entity e = get(i);
-		if (e.positionKey != getLocationIndex(e)) {
-			removeEntityFromPositionMap(e);
-			addEntityToPositionMap(e);
-		}
+		updatePosition(get(i));
 	}
 	
 	private int getLocationIndex(Entity e) {

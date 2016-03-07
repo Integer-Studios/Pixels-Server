@@ -59,9 +59,6 @@ public class PacketUpdateWorld extends Packet {
 				}
 			}
 		}
-		
-		System.out.println("min " + minChunkXLoaded + "," + minChunkYLoaded);
-		System.out.println("max " + maxChunkXLoaded + "," + maxChunkYLoaded);
 
 		
 		writeChunks(servlet);
