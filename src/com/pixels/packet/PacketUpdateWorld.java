@@ -27,16 +27,15 @@ public class PacketUpdateWorld extends Packet {
 		
 		for (Integer index : chunks.keySet()) {
 			Chunk c = chunks.get(index);
-			
 			if (isFirstChunk) {
-				minChunkYLoaded = c.chunkX;
+				minChunkXLoaded = c.chunkX;
 				maxChunkXLoaded = c.chunkX;
 				minChunkYLoaded = c.chunkY;
 				maxChunkYLoaded = c.chunkY;
 				isFirstChunk = false;
 			} else {
 				if (c.chunkX < minChunkXLoaded)
-					minChunkYLoaded = c.chunkX;
+					minChunkXLoaded = c.chunkX;
 				if (c.chunkX > maxChunkXLoaded)
 					maxChunkXLoaded = c.chunkX;
 				if (c.chunkY < minChunkYLoaded)
@@ -54,12 +53,15 @@ public class PacketUpdateWorld extends Packet {
 		
 		for (Integer index : entities.keySet()) {
 			Entity e = entities.get(index);
-			if (e.posX >= ((minChunkXLoaded-1)>>4) && e.posX <= (maxChunkXLoaded>>4)) {
-				if (e.posY >= ((minChunkYLoaded-1)>>4) && e.posY <= (maxChunkYLoaded>>4)) {
+			if (e.posX >= (x1>>4) && e.posX <= ((x2+1)>>4)) {
+				if (e.posY >= (y1>>4) && e.posY <= ((y2+1)>>4)) {
 					entities.remove(index);
 				}
 			}
 		}
+		
+		System.out.println("min " + minChunkXLoaded + "," + minChunkYLoaded);
+		System.out.println("max " + maxChunkXLoaded + "," + maxChunkYLoaded);
 
 		
 		writeChunks(servlet);

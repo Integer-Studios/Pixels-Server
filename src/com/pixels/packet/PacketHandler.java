@@ -13,7 +13,7 @@ public class PacketHandler {
 	
 	public static void handlePacketLogin(PacketLogin packet, CommunicationServlet servlet) {
 				
-		EntityOnlinePlayer e = new EntityOnlinePlayer(39, 39, true, packet.userID);
+		EntityOnlinePlayer e = new EntityOnlinePlayer(120, 120, true, packet.userID);
 		packet.serverID = e.getServerID();
 		PlayerManager.addPlayer(packet.userID, packet.serverID, servlet);
 						
