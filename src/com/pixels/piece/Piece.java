@@ -30,9 +30,16 @@ public class Piece {
 	public static ArrayList<PieceInfo> info = new ArrayList<PieceInfo>();
 	
 	static {
-		info.add(new PieceInfo());
-		info.add(new PieceInfo());//grass
-		info.add(new PieceInfo());//rock
+		info.add(new PieceInfo());//0, blank
+		info.add(new PieceInfo());//1, grass 1
+		info.add(new PieceInfo());//2, grass 2
+		info.add(new PieceInfo());//3, rock 1
+		info.add(new PieceInfo());//4, rock 2
+		info.add(new PieceInfo());//5, pine
+		info.add(new PieceInfo());//6, apple
+		info.add(new PieceInfo());//7, abyssal fir
+		info.add(new PieceInfo());//8, flower
+
 	}
 
 }

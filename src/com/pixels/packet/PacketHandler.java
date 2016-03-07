@@ -4,7 +4,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.entity.Entity;
-import com.pixels.entity.EntityBlank;
 import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
