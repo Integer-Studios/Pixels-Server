@@ -1,6 +1,9 @@
 package com.pixels.start;
 
+import java.util.Random;
+
 import com.pixels.communication.CommunicationServer;
+import com.pixels.entity.EntityBunny;
 import com.pixels.world.World;
 import com.pixels.world.WorldThread;
 
@@ -18,6 +21,10 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
+		Random r = new Random();
+		for (int i = 0; i < r.nextInt(10); i++) {
+			new EntityBunny(125 + r.nextInt(5), 125 + r.nextInt(5), true);
+		}
 		worldThread = new WorldThread(world);
 		worldThread.start();
 
