@@ -32,7 +32,8 @@ public class Entity {
 		
 		if (!(this instanceof EntityOnlinePlayer)) {
 			if (velocityX != prevVelocityX || velocityY != prevVelocityY) {
-				
+				System.out.println(velocityY);
+
 				PlayerManager.broadcastPacket(new PacketMoveEntity(this));
 				
 			} 
@@ -74,8 +75,8 @@ public class Entity {
 		
 	public void setVelocity(float x, float y) {
 		
-		velocityX = x;
-		velocityY = y;
+		this.velocityX = x;
+		this.velocityY = y;
 		
 	}
 	

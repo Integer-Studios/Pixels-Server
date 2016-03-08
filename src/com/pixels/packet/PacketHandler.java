@@ -43,9 +43,7 @@ public class PacketHandler {
 //		move entity through entity class now, entities update their own position map at the end of update
 		float xDiff = Math.abs(PixelsServer.world.getEntity(packet.serverID).posX - packet.posX);
 		float yDiff = Math.abs(PixelsServer.world.getEntity(packet.serverID).posY - packet.posY);
-		
 		PixelsServer.world.getEntity(packet.serverID).setVelocity(packet.velocityX, packet.velocityY);
-//		System.out.println(packet.userID);
 		PlayerManager.broadcastPacketExcludingPlayer(packet, packet.userID);
 
 		if (packet.velocityX == 0 && packet.velocityY == 0) {

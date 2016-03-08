@@ -22,7 +22,7 @@ public class PixelsServer extends Thread {
 		// Start World Thread
 		world = new World(20, 20);
 		Random r = new Random();
-		for (int i = 0; i < 0; i++) {
+		for (int i = 0; i < 20; i++) {
 			new EntityBunny(125 + r.nextInt(5), 125 + r.nextInt(5), true);
 		}
 		worldThread = new WorldThread(world);
