@@ -2,8 +2,6 @@ package com.pixels.entity;
 
 import java.util.Random;
 
-import com.pixels.packet.PacketMoveEntity;
-import com.pixels.player.PlayerManager;
 import com.pixels.world.World;
 
 public class EntityBunny extends Entity {
