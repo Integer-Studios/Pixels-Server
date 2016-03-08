@@ -45,6 +45,7 @@ public class PacketHandler {
 		float yDiff = Math.abs(PixelsServer.world.getEntity(packet.serverID).posY - packet.posY);
 		
 		PixelsServer.world.getEntity(packet.serverID).setVelocity(packet.velocityX, packet.velocityY);
+//		System.out.println(packet.userID);
 		PlayerManager.broadcastPacketExcludingPlayer(packet, packet.userID);
 
 		if (packet.velocityX == 0 && packet.velocityY == 0) {
