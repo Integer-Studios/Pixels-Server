@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.pixels.communication.CommunicationServlet;
-import com.pixels.packet.PacketUpdateEntity;
+import com.pixels.packet.PacketMoveEntity;
 import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
 import com.pixels.world.World;
@@ -25,17 +25,29 @@ public class Entity {
 		posX = x;
 		posY = y;
 		
-		if (!(this instanceof EntityOnlinePlayer))
-			PlayerManager.broadcastPacket(new PacketUpdateEntity(this));
-	
 	}
 
 	public void update(World w) {
+		setPosition(posX+velocityX, posY+velocityY);
 		
+		if (!(this instanceof EntityOnlinePlayer)) {
+			if (velocityX != prevVelocityX || velocityY != prevVelocityY) {
+				
+				PlayerManager.broadcastPacket(new PacketMoveEntity(this));
+				
+			} 
+	
+		}
+		
+		prevVelocityX = velocityX;
+		prevVelocityY = velocityY;
+		prevPosX = posX;
+		prevPosY = posY;
 	}
 
 	public int getServerID() {
 		return serverID;
+		
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -60,8 +72,17 @@ public class Entity {
 		
 	}
 		
+	public void setVelocity(float x, float y) {
+		
+		velocityX = x;
+		velocityY = y;
+		
+	}
+	
 	public int id, serverID, positionKey;
-	public float posX, posY;
+	public float posX, posY, prevPosX, prevPosY;
+	public float velocityX, velocityY;
+	public float prevVelocityX, prevVelocityY;
 	
 	@SuppressWarnings("rawtypes")
 	private static HashMap<Integer, Class> entityMap = new HashMap<Integer, Class>();
@@ -73,5 +94,7 @@ public class Entity {
 		entityMap.put(2, EntityOnlinePlayer.class);
 		entityMap.put(3, EntityBunny.class);
 	}
+
+	
 
 }

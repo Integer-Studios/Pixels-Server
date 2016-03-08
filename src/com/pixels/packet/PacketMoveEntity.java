@@ -5,14 +5,14 @@ import java.io.IOException;
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.entity.Entity;
 
-public class PacketUpdateEntity extends Packet {
+public class PacketMoveEntity extends Packet {
 	
-	public PacketUpdateEntity() {
-		this.id = 5;
+	public PacketMoveEntity() {
+		this.id = 10;
 	}
 	
-	public PacketUpdateEntity(Entity e) {
-		this.id = 5;
+	public PacketMoveEntity(Entity e) {
+		this.id = 10;
 		serverID = e.serverID;
 		posX = e.posX;
 		posY = e.posY;
@@ -39,7 +39,8 @@ public class PacketUpdateEntity extends Packet {
 		posY = servlet.getInput().readFloat();
 		velocityX = servlet.getInput().readFloat();
 		velocityY = servlet.getInput().readFloat();
-		PacketHandler.handlePacketUpdateEntity(this);
+
+		PacketHandler.handlePacketMoveEntity(this);
 		
 	}
 	
