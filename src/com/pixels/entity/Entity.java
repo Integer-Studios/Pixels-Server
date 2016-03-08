@@ -32,7 +32,6 @@ public class Entity {
 		
 		if (!(this instanceof EntityOnlinePlayer)) {
 			if (velocityX != prevVelocityX || velocityY != prevVelocityY) {
-				System.out.println(velocityY);
 
 				PlayerManager.broadcastPacket(new PacketMoveEntity(this));
 				
