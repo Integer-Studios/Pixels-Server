@@ -2,6 +2,8 @@ package com.pixels.entity;
 
 import java.util.Random;
 
+import com.pixels.packet.PacketMoveEntity;
+import com.pixels.player.PlayerManager;
 import com.pixels.world.World;
 
 public class EntityBunny extends Entity {
@@ -16,34 +18,32 @@ public class EntityBunny extends Entity {
 	}
 	
 	public void update(World w) {
+		super.update(w);
 		Random r = new Random();
-		if (r.nextInt(30) == 0) {
-			velX = 0.05f;
+		if (r.nextInt(60) == 0) {
+			velocityX = 0.05f;
 		}
-		if (r.nextInt(30) == 0) {
-			velX = -0.05f;
+		if (r.nextInt(60) == 0) {
+			velocityX = -0.05f;
 		}
-		if (r.nextInt(30) == 0) {
-			velY = 0.05f;
+		if (r.nextInt(60) == 0) {
+			velocityY = 0.05f;
 		}
-		if (r.nextInt(30) == 0) {
-			velY = -0.05f;
+		if (r.nextInt(60) == 0) {
+			velocityY = -0.05f;
 		}
-		if (r.nextInt(30) == 0) {
-			velX = 0f;
+		if (r.nextInt(60) == 0) {
+			velocityX = 0f;
 		}
-		if (r.nextInt(30) == 0) {
-			velY = 0f;
+		if (r.nextInt(60) == 0) {
+			velocityY = 0f;
 		}
-		if (r.nextInt(30) == 0) {
-			velX = 0f;
-			velY = 0f;
+		if (r.nextInt(60) == 0) {
+			velocityX = 0f;
+			velocityY = 0f;
 		}
+	
 		
-		setPosition(posX+velX, posY+velY);
 	}
 	
-	float velX = 0;
-	float velY = 0;
-
 }

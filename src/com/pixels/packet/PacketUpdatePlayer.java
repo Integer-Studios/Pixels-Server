@@ -22,12 +22,14 @@ public class PacketUpdatePlayer extends Packet{
 		serverID = servlet.getInput().readInt();
 		posX = servlet.getInput().readFloat();
 		posY = servlet.getInput().readFloat();
+		velocityX = servlet.getInput().readFloat();
+		velocityY = servlet.getInput().readFloat();
 		
 		PacketHandler.handlePacketUpdatePlayer(this);
 		
 	}
 	
 	int serverID;
-	float posX, posY;
+	float posX, posY, velocityX, velocityY;
 
 }
