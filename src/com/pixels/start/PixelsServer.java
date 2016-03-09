@@ -1,10 +1,7 @@
 package com.pixels.start;
 
-import java.util.Random;
 
 import com.pixels.communication.CommunicationServer;
-import com.pixels.entity.EntityBunny;
-import com.pixels.entity.EntityGob;
 import com.pixels.world.World;
 import com.pixels.world.WorldThread;
 
@@ -22,10 +19,8 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-		Random r = new Random();
-		for (int i = 0; i < 20; i++) {
-			new EntityGob(125 + r.nextInt(20), 125 + r.nextInt(20), true);
-		}
+		world.setPieceID(120, 120, 3);
+//		new EntityGob(150, 150, true);
 		worldThread = new WorldThread(world);
 		worldThread.start();
 

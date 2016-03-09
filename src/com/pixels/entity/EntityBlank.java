@@ -3,6 +3,7 @@ package com.pixels.entity;
 public class EntityBlank extends Entity {
 	
 	public EntityBlank() {
+		super();
 		this.id = 0;
 	}
 	

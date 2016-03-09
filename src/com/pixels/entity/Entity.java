@@ -3,6 +3,8 @@ package com.pixels.entity;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.newdawn.slick.geom.Rectangle;
+
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.packet.PacketMoveEntity;
 import com.pixels.player.PlayerManager;
@@ -11,11 +13,14 @@ import com.pixels.world.World;
 
 public class Entity {
 	
-	public Entity() { }
+	public Entity() { 
+		collisionBox = new Rectangle(0, 0, 0, 0);
+	}
 	
 	public Entity(float x, float y, boolean prop) {
 		posX = x;
 		posY = y;
+		collisionBox = new Rectangle(0, 0, 0, 0);
 		if (prop)
 			PixelsServer.world.propogateEntity(this);
 	}
@@ -28,6 +33,7 @@ public class Entity {
 	}
 
 	public void update(World w) {
+
 		setPosition(posX+velocityX, posY+velocityY);
 		
 		if (!(this instanceof EntityOnlinePlayer)) {
@@ -43,6 +49,9 @@ public class Entity {
 		prevVelocityY = velocityY;
 		prevPosX = posX;
 		prevPosY = posY;
+		
+		collisionBox.setLocation(posX - (collisionBox.getWidth()/2), posY - collisionBox.getHeight());
+		
 	}
 
 	public int getServerID() {
@@ -79,10 +88,16 @@ public class Entity {
 		
 	}
 	
+	public void setCollisionBoxSize(float width, float height) {
+		collisionBox.setSize(width, height);
+	}
+	
 	public int id, serverID, positionKey;
 	public float posX, posY, prevPosX, prevPosY;
 	public float velocityX, velocityY;
 	public float prevVelocityX, prevVelocityY;
+	public Rectangle collisionBox;
+
 	
 	@SuppressWarnings("rawtypes")
 	private static HashMap<Integer, Class> entityMap = new HashMap<Integer, Class>();
@@ -92,8 +107,7 @@ public class Entity {
 		entityMap.put(0, EntityBlank.class);
 //		entityMap.put(1, EntityPlayer.class); client only
 		entityMap.put(2, EntityOnlinePlayer.class);
-		entityMap.put(3, EntityBunny.class);
-		entityMap.put(4, EntityGob.class);
+		entityMap.put(3, EntityGob.class);
 	}
 
 	
