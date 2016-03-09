@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.pixels.communication.CommunicationServer;
 import com.pixels.entity.EntityBunny;
+import com.pixels.entity.EntityGob;
 import com.pixels.world.World;
 import com.pixels.world.WorldThread;
 
@@ -23,7 +24,7 @@ public class PixelsServer extends Thread {
 		world = new World(20, 20);
 		Random r = new Random();
 		for (int i = 0; i < 20; i++) {
-			new EntityBunny(125 + r.nextInt(20), 125 + r.nextInt(20), true);
+			new EntityGob(125 + r.nextInt(20), 125 + r.nextInt(20), true);
 		}
 		worldThread = new WorldThread(world);
 		worldThread.start();

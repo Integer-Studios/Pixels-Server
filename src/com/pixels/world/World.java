@@ -73,8 +73,8 @@ public class World {
 		
 		ConcurrentHashMap<Integer, Chunk> loadedChunks = new ConcurrentHashMap<Integer, Chunk>();
 		
-		int chunkX = Math.round(e.posX) >> 4;
-		int chunkY = Math.round(e.posY) >> 4;
+		int chunkX = ((int)e.posX) >> 4;
+		int chunkY = ((int)e.posY) >> 4;
 		for (int y = chunkY-1; y <= chunkY+1; y++) {
 			for (int x = chunkX-1; x <= chunkX+1; x++) {
 				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
