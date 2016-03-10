@@ -2,7 +2,8 @@ package com.pixels.start;
 
 
 import com.pixels.communication.CommunicationServer;
-import com.pixels.entity.EntityGob;
+import com.pixels.util.Log;
+import com.pixels.util.ThreadName;
 import com.pixels.world.World;
 import com.pixels.world.WorldThread;
 
@@ -13,6 +14,8 @@ public class PixelsServer extends Thread {
 	}
 	
 	public void run () {
+		
+		Log.print(ThreadName.MAIN, "Server Launched");
 				
 		// Start Client Listening Thread
 		server = new CommunicationServer(port);
@@ -20,10 +23,8 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-		new EntityGob(110, 110, true);
 		worldThread = new WorldThread(world);
 		worldThread.start();
-
 		
 	}
 	

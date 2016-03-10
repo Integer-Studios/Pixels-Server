@@ -7,6 +7,8 @@ import com.pixels.entity.Entity;
 import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
+import com.pixels.util.Log;
+import com.pixels.util.ThreadName;
 import com.pixels.world.Chunk;
 
 public class PacketHandler {
@@ -28,7 +30,7 @@ public class PacketHandler {
 
 	public static void handlePacketPlayerDidSpawn(PacketPlayerDidSpawn packet) {
 
-		System.out.println("User spawned: " + packet.userID);
+		Log.print(ThreadName.SERVLET, "User spawned: " + packet.userID);
 		//TODO player is loaded
 		
 	}
@@ -71,6 +73,7 @@ public class PacketHandler {
 	public static void handlePacketUpdateWorld(PacketUpdateWorld packet, CommunicationServlet servlet) {
 		// TODO Auto-generated method stub
 		Entity e = PixelsServer.world.getEntity(PlayerManager.getPlayer(packet.userID));
+		e.setPosition(packet.percievedPosX, packet.percievedPosY);
 		packet.chunks = PixelsServer.world.getLoadedChunks(e);
 		packet.entities = PixelsServer.world.getLoadedEntities(e);
 		servlet.addPacket(packet);

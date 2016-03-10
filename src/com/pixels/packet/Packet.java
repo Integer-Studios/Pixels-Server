@@ -8,11 +8,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import com.pixels.communication.CommunicationServlet;
+import com.pixels.util.Log;
+import com.pixels.util.ThreadName;
 
 public abstract class Packet {
 	
 	public static void writePacket(Packet packet, CommunicationServlet servlet) {
 		try {
+			
+			Log.print(ThreadName.SERVLET, "Writing packet with id: " + packet.id);
 			
 			servlet.getOutput().writeInt(packet.id);
 			
@@ -40,12 +44,11 @@ public abstract class Packet {
 			
 			Packet packet = getPacket(id);
 			
-			if (packet == null) {
-				
-				return null;
-				
-			}
-			
+			if (packet == null)
+				Log.error(ThreadName.SERVLET, "No packet found with id: " + id);
+			else
+				Log.print(ThreadName.SERVLET, "Reading packet with id: " + id);
+
 			packet.id = id;
 			packet.userID = userID;
 			if (id == 2) 
@@ -57,6 +60,7 @@ public abstract class Packet {
 			return packet;
 
 		} catch (IOException e) {
+			Log.print(ThreadName.SERVLET, "Failed to read");
 			try {
 				if (servlet.isRunning())
 					servlet.disconnect(false);
@@ -116,7 +120,7 @@ public abstract class Packet {
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			System.out.println("Skipping packet with id " + id);
+			Log.print(ThreadName.SERVLET, "Skipping packet with id " + id);
 			return null;
 		}
 	}

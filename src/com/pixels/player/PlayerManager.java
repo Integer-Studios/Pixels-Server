@@ -5,6 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.packet.Packet;
 import com.pixels.start.PixelsServer;
+import com.pixels.util.Log;
+import com.pixels.util.ThreadName;
 
 public class PlayerManager {
 	
@@ -35,7 +37,7 @@ public class PlayerManager {
 		PixelsServer.world.entities.remove(players.get(userID));
 		players.remove(userID);
 		connections.remove(userID);
-		System.out.println("User Logged Out: " + userID);
+		Log.print(ThreadName.SERVLET, "User Logged Out: " + userID);
 		
 	}
 	

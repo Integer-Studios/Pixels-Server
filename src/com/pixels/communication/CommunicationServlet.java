@@ -13,6 +13,8 @@ import java.util.Objects;
 import com.pixels.packet.Packet;
 import com.pixels.packet.PacketLogout;
 import com.pixels.player.PlayerManager;
+import com.pixels.util.Log;
+import com.pixels.util.ThreadName;
 import com.pixels.communication.CommunicationServletReaderThread;
 import com.pixels.communication.CommunicationServletWriterThread;
 
@@ -27,6 +29,7 @@ public class CommunicationServlet {
 			this.output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream(), 5120));
 			this.reader = new CommunicationServletReaderThread(this);
 			this.writer = new CommunicationServletWriterThread(this);
+			Log.print(ThreadName.SERVLET, "Servlet initialized");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

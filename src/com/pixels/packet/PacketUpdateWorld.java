@@ -77,8 +77,10 @@ public class PacketUpdateWorld extends Packet {
 		minChunkXLoaded = servlet.getInput().readInt();	
 		minChunkYLoaded = servlet.getInput().readInt();		
 		maxChunkXLoaded = servlet.getInput().readInt();		
-		maxChunkYLoaded = servlet.getInput().readInt();		
+		maxChunkYLoaded = servlet.getInput().readInt();	
 		
+		percievedPosX = servlet.getInput().readFloat();	
+		percievedPosY = servlet.getInput().readFloat();	
 		
 		PacketHandler.handlePacketUpdateWorld(this, servlet);
 
@@ -135,6 +137,7 @@ public class PacketUpdateWorld extends Packet {
 	}
 	
 	public int minChunkXLoaded, minChunkYLoaded, maxChunkXLoaded, maxChunkYLoaded;
+	public float percievedPosX, percievedPosY;
 	public ConcurrentHashMap<Integer,Chunk> chunks = new ConcurrentHashMap<Integer,Chunk>();
 	public ConcurrentHashMap<Integer,Entity> entities = new ConcurrentHashMap<Integer,Entity>();
 
