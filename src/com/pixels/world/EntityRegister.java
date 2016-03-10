@@ -47,6 +47,8 @@ public class EntityRegister {
 	public ArrayList<Entity> get(int x, int y) {
 		
 		ArrayList<Integer> ids = getIDs(x,y);
+		if (ids == null)
+			return null;
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		for (int id : ids) {
 			entities.add(get(id));

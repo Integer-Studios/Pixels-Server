@@ -52,6 +52,8 @@ public class Entity {
 		
 		collisionBox.setLocation(posX - (collisionBox.getWidth()/2), posY - collisionBox.getHeight());
 		
+		if(!(this instanceof EntityOnlinePlayer))
+			w.checkEntityCollisions(this);
 	}
 
 	public int getServerID() {

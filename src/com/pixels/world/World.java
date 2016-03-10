@@ -1,11 +1,14 @@
 package com.pixels.world;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.entity.Entity;
 import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.packet.PacketSpawnEntity;
+import com.pixels.piece.Piece;
 import com.pixels.player.PlayerManager;
+import com.pixels.util.CollisionManager;
 
 public class World {
 	
@@ -57,12 +60,38 @@ public class World {
 		return entities.get(entityID);
 	}
 	
+	public void checkEntityCollisions(Entity e) {
+		int radius = 1;
+		
+		for (int y = ((int)e.posY - radius); y <= ((int)e.posY + radius); y++) {
+			for (int x = ((int)e.posX - radius);x <= ((int)e.posX + radius); x++) {
+				//check collision for piece here
+				Piece p = getPiece(x, y);
+				if (p != null)
+					CollisionManager.testPieceCollision(e, p);
+				//check collision for all entities here
+				ArrayList<Entity> localEntities = entities.get(x, y);
+				if (localEntities != null) {
+					for (Entity entity : localEntities) {
+						if (entity.serverID != e.serverID)
+							CollisionManager.testEntityCollision(e, entity);
+					}
+				}
+			}
+		}
+
+	}
+	
 	public void setPieceID(int x, int y, int id) {
 		getChunk(x, y).setPieceID(x, y, id);
 	}
 
 	public int getPieceID(int x, int y) {
 		return getChunk(x, y).getPieceID(x, y);
+	}
+	
+	public Piece getPiece(int x, int y) {
+		return getChunk(x, y).getPiece(x, y);
 	}
 	
 	public Chunk getChunk(int x, int y) {

@@ -48,6 +48,6 @@ public class EntityGob extends EntityAlive {
 
 	}
 	
-	float speed = 0.2f;
+	float speed = 0.05f;
 
 }
