@@ -36,6 +36,11 @@ public class Entity {
 
 		setPosition(posX+velocityX, posY+velocityY);
 		
+		collisionBox.setLocation(posX - (collisionBox.getWidth()/2), posY - collisionBox.getHeight());
+		
+		if(!(this instanceof EntityOnlinePlayer))
+			w.checkEntityCollisions(this);
+		
 		if (!(this instanceof EntityOnlinePlayer)) {
 			if (velocityX != prevVelocityX || velocityY != prevVelocityY) {
 
@@ -49,11 +54,7 @@ public class Entity {
 		prevVelocityY = velocityY;
 		prevPosX = posX;
 		prevPosY = posY;
-		
-		collisionBox.setLocation(posX - (collisionBox.getWidth()/2), posY - collisionBox.getHeight());
-		
-		if(!(this instanceof EntityOnlinePlayer))
-			w.checkEntityCollisions(this);
+
 	}
 
 	public int getServerID() {
