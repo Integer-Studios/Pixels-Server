@@ -17,7 +17,6 @@ public class PacketUpdateWorld extends Packet {
 
 	@Override
 	public void writeData(CommunicationServlet servlet) throws IOException {
-
 		boolean isFirstChunk = true;
 		
 		int x1 = minChunkXLoaded;
@@ -50,17 +49,7 @@ public class PacketUpdateWorld extends Packet {
 				}
 			}
 		}
-		
-		for (Integer index : entities.keySet()) {
-			Entity e = entities.get(index);
-			if (e.posX >= (x1>>4) && e.posX <= ((x2+1)>>4)) {
-				if (e.posY >= (y1>>4) && e.posY <= ((y2+1)>>4)) {
-					entities.remove(index);
-				}
-			}
-		}
 
-		
 		writeChunks(servlet);
 		writeEntities(servlet);
 		

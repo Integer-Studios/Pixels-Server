@@ -119,28 +119,29 @@ public class World {
 
 	public ConcurrentHashMap<Integer, Entity> getLoadedEntities(Entity e) {
 		
-//		OLD code, probaly have to redo for floating point LITERALLY ONLY REASN FOR POSITION MAP ON SERVER
 		
-//		ConcurrentHashMap<Integer, Entity> loadedEntities = new ConcurrentHashMap<Integer, Entity>();
-//		
-//		int chunkX = e.posX >> 4;
-//		int chunkY = e.posY >> 4;
-//		int x1 = (chunkX-2) << 4;
-//		int y1 = (chunkY-2) << 4;
-//		int x2 = (chunkX+1) << 4;
-//		int y2 = (chunkY+1) << 4;
-//		for (int y = y1; y < y2; y++) {
-//			for (int x = x1; x < x2; x++) {
-//				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
-//					Integer i = entityPositions.get(getLocationIndex(x, y));
-//					if (i != null)
-//						loadedEntities.put(i, entities.get(i));
-//				}
-//			}
-//		}
-//		return loadedEntities;
-		
-		return entities.entityIDMap;
+		ConcurrentHashMap<Integer, Entity> loadedEntities = new ConcurrentHashMap<Integer, Entity>();
+
+		int chunkX = (int)e.posX >> 4;
+		int chunkY = (int)e.posY >> 4;
+		int x1 = (chunkX-1) << 4;
+		int y1 = (chunkY-1) << 4;
+		int x2 = (chunkX+2) << 4;
+		int y2 = (chunkY+2) << 4;
+		for (int y = y1; y < y2; y++) {
+			for (int x = x1; x < x2; x++) {
+				if (x >= 0 && x < (chunkWidth<<4) && y >= 0 && y < (chunkHeight<<4)) {
+					ArrayList<Entity> entityLocationGroup = entities.get(x, y);
+					if (entityLocationGroup != null) {
+						for (Entity entity : entityLocationGroup) {
+							loadedEntities.put(entity.serverID, entity);
+						}
+					}
+				}
+			}
+		}
+				
+		return loadedEntities;
 	}
 	
 	private int getChunkIndex(int chunkX, int chunkY) {
