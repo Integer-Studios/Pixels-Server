@@ -21,7 +21,19 @@ public class Chunk {
 				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0));
 				
 				Random r = new Random();
-				if (r.nextInt(50) == 0)
+				if (getGlobalX(x) == 130 && getGlobalY(y) == 130)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (getGlobalX(x) == 130 && getGlobalY(y) == 131)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (getGlobalX(x) == 131 && getGlobalY(y) == 130)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (getGlobalX(x) == 131 && getGlobalY(y) == 131)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (getGlobalX(x) == 132 && getGlobalY(y) == 130)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (getGlobalX(x) == 132 && getGlobalY(y) == 131)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+				else if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 1));
 				else if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 2));
@@ -88,6 +100,14 @@ public class Chunk {
 	
 	private int getLocalLocationIndex(int x, int y) {
 		return y*16 + x;
+	}
+	
+	private int getGlobalX(int x) {
+		return x + (chunkX << 4);
+	}
+	
+	private int getGlobalY(int y) {
+		return y + (chunkY << 4);
 	}
 	
 	public ConcurrentHashMap<Integer,Tile> tiles = new ConcurrentHashMap<Integer,Tile>();

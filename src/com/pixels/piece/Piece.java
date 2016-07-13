@@ -47,6 +47,7 @@ public class Piece {
 		info.add(new PieceInfo(0.1f, 0.2f));//6, apple
 		info.add(new PieceInfo(0.1f, 0.2f));//7, abyssal fir
 		info.add(new PieceInfo());//8, flower
+		info.add(new PieceInfo());//9, cabin
 
 	}
 

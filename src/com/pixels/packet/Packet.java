@@ -15,9 +15,7 @@ public abstract class Packet {
 	
 	public static void writePacket(Packet packet, CommunicationServlet servlet) {
 		try {
-			
-			Log.print(ThreadName.SERVLET, "Writing packet with id: " + packet.id);
-			
+						
 			servlet.getOutput().writeInt(packet.id);
 			
 			servlet.getOutput().writeInt(packet.userID);
@@ -46,8 +44,6 @@ public abstract class Packet {
 			
 			if (packet == null)
 				Log.error(ThreadName.SERVLET, "No packet found with id: " + id);
-			else
-				Log.print(ThreadName.SERVLET, "Reading packet with id: " + id);
 
 			packet.id = id;
 			packet.userID = userID;
