@@ -27,10 +27,10 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-		Random r = new Random();
-		for (int i = 0; i < 20; i++) {
-			new EntityGob(120 + r.nextInt(60), 120 + r.nextInt(60), true);
-		}
+//		Random r = new Random();
+//		for (int i = 0; i < 20; i++) {
+//			new EntityGob(120 + r.nextInt(60), 120 + r.nextInt(60), true);
+//		}
 		worldThread = new WorldThread(world);
 		worldThread.start();
 		

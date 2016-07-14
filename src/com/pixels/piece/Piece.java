@@ -17,6 +17,12 @@ public class Piece {
 
 	}
 	
+	public Piece (int x, int y, int id, int m) {
+		
+		this(x, y, id);
+		metadata = m;
+	}
+	
 	public void update(World w) {
 		info.get(id).update(w, this);
 	}
@@ -33,7 +39,7 @@ public class Piece {
 		return info.get(id).doesCollide;
 	}
 	
-	public int posX, posY, id;
+	public int posX, posY, id, metadata;
 	public static ArrayList<PieceInfo> info = new ArrayList<PieceInfo>();
 	public Rectangle collisionBox;
 	

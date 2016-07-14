@@ -70,9 +70,10 @@ public class PacketWorldData extends Packet {
 	}
 	
 	public void writePiece(Piece piece, CommunicationServlet servlet) throws IOException {
-		if (piece != null)
+		if (piece != null) {
 			servlet.getOutput().writeInt(piece.id);
-		else
+			servlet.getOutput().writeInt(piece.metadata);
+		} else
 			servlet.getOutput().writeInt(0);
 	}
 	

@@ -27,8 +27,9 @@ public class PlayerManager {
 	
 	public static void broadcastPacketExcludingPlayer(Packet p, int userID) {
 		for (Integer i : connections.keySet()) {
-			if (i != userID)
+			if (i != userID) {
 				connections.get(i).addPacket(p);
+			}
 		}
 	}
 	
