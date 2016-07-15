@@ -33,13 +33,13 @@ public class Entity {
 	}
 
 	public void update(World w) {
-
-		setPosition(posX+velocityX, posY+velocityY);
 		
 		collisionBox.setLocation(posX - (collisionBox.getWidth()/2), posY - collisionBox.getHeight());
 		
 		if(!(this instanceof EntityOnlinePlayer))
 			w.checkEntityCollisions(this);
+		
+		setPosition(posX+velocityX, posY+velocityY);
 		
 		if (!(this instanceof EntityOnlinePlayer)) {
 			if (velocityX != prevVelocityX || velocityY != prevVelocityY) {
@@ -93,6 +93,14 @@ public class Entity {
 	
 	public void setCollisionBoxSize(float width, float height) {
 		collisionBox.setSize(width, height);
+	}
+	
+	public float getCollisionWidth() {
+		return collisionBox.getWidth();
+	}
+	
+	public float getCollisionHeight() {
+		return collisionBox.getHeight();
 	}
 	
 	public int id, serverID, positionKey;

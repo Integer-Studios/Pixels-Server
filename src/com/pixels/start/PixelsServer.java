@@ -2,8 +2,6 @@ package com.pixels.start;
 
 
 
-import java.util.Random;
-
 import com.pixels.communication.CommunicationServer;
 import com.pixels.entity.EntityGob;
 import com.pixels.util.Log;
@@ -27,10 +25,7 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-//		Random r = new Random();
-//		for (int i = 0; i < 20; i++) {
-//			new EntityGob(120 + r.nextInt(60), 120 + r.nextInt(60), true);
-//		}
+		new EntityGob(110f, 110f, true);
 		worldThread = new WorldThread(world);
 		worldThread.start();
 		

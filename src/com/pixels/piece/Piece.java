@@ -39,6 +39,14 @@ public class Piece {
 		return info.get(id).doesCollide;
 	}
 	
+	public float getCollisionWidth() {
+		return info.get(id).collisionWidth;
+	}
+	
+	public float getCollisionHeight() {
+		return info.get(id).collisionHeight;
+	}
+	
 	public int posX, posY, id, metadata;
 	public static ArrayList<PieceInfo> info = new ArrayList<PieceInfo>();
 	public Rectangle collisionBox;

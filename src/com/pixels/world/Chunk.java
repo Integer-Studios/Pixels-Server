@@ -24,26 +24,26 @@ public class Chunk {
 				//building test begin
 				if (getGlobalX(x) == 130 && getGlobalY(y) == 130)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 130 && getGlobalY(y) == 131)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 131 && getGlobalY(y) == 130)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 131 && getGlobalY(y) == 131)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 132 && getGlobalY(y) == 130)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 132 && getGlobalY(y) == 131)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 132 && getGlobalY(y) == 129)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 131 && getGlobalY(y) == 129)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 129 && getGlobalY(y) == 130)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 133 && getGlobalY(y) == 129)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-				else if (getGlobalX(x) == 134 && getGlobalY(y) == 129)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 130 && getGlobalY(y) == 131)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 130)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 131)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 1));
+//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 130)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 131)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 2));
+//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 129)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 129)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 129 && getGlobalY(y) == 130)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 133 && getGlobalY(y) == 129)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
+//				else if (getGlobalX(x) == 134 && getGlobalY(y) == 129)
+//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 2));
 				//building test over
 				
 				else if (r.nextInt(50) == 0)
