@@ -79,4 +79,8 @@ public class PacketHandler {
 		servlet.addPacket(packet);
 	}
 
+	public static void handlePacketUpdatePiece(PacketUpdatePiece packet) {
+		PixelsServer.world.setPieceIDAndMetadata(packet.posX, packet.posY, packet.pieceID, packet.metadata);
+	}
+
 }

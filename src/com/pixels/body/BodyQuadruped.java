@@ -5,13 +5,13 @@ import java.util.Arrays;
 
 import com.pixels.entity.Entity;
 
-public class BodyBiped extends Body {
-
-	public BodyBiped(Entity e, float w, float h) {
+public class BodyQuadruped extends Body {
+	
+	public BodyQuadruped(Entity e, float w, float h) {
 		super(e, w, h, new ArrayList<BodyDirection>(Arrays.asList(
 				new BodyDirection(1f, 0.125f),
 				new BodyDirection(1f, 0.125f),
-				new BodyDirection(0.7f, 0.125f),
+				new BodyDirection(1f, 0.125f),
 				new BodyDirection(1f, 0.125f),
 				new BodyDirection(1f, 0.125f)
 				)));

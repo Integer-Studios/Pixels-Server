@@ -85,6 +85,10 @@ public class World {
 	public void setPieceID(int x, int y, int id) {
 		getChunk(x, y).setPieceID(x, y, id);
 	}
+	
+	public void setPieceIDAndMetadata(int x, int y, int id, int metadata) {
+		getChunk(x, y).setPieceIDAndMetadata(x, y, id, metadata);		
+	}
 
 	public int getPieceID(int x, int y) {
 		return getChunk(x, y).getPieceID(x, y);

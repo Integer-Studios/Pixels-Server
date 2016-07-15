@@ -49,7 +49,7 @@ public abstract class Packet {
 			packet.userID = userID;
 			if (id == 2) 
 				packet.servletLogin = servlet;
-				
+						
 			packet.readAuxiliaryVariables(servlet.getInput());
 			packet.readData(servlet);
 
@@ -282,6 +282,7 @@ public abstract class Packet {
 		packetMap.put(8, PacketUpdateWorld.class);
 		packetMap.put(9, PacketLogout.class);
 		packetMap.put(10, PacketMoveEntity.class);
+		packetMap.put(11, PacketUpdatePiece.class);
 
 	}
 	

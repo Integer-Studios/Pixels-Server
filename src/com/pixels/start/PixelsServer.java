@@ -3,7 +3,7 @@ package com.pixels.start;
 
 
 import com.pixels.communication.CommunicationServer;
-import com.pixels.entity.EntityGob;
+import com.pixels.entity.EntityBear;
 import com.pixels.util.Log;
 import com.pixels.util.ThreadName;
 import com.pixels.world.World;
@@ -25,7 +25,7 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-		new EntityGob(110f, 110f, true);
+		new EntityBear(115f, 115f, true);
 		worldThread = new WorldThread(world);
 		worldThread.start();
 		

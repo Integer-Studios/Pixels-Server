@@ -21,32 +21,7 @@ public class Chunk {
 				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0));
 				
 				Random r = new Random();
-				//building test begin
-				if (getGlobalX(x) == 130 && getGlobalY(y) == 130)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 130 && getGlobalY(y) == 131)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 130)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 131)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 1));
-//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 130)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 131)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 2));
-//				else if (getGlobalX(x) == 132 && getGlobalY(y) == 129)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 131 && getGlobalY(y) == 129)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 129 && getGlobalY(y) == 130)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 133 && getGlobalY(y) == 129)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9));
-//				else if (getGlobalX(x) == 134 && getGlobalY(y) == 129)
-//					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 9, 2));
-				//building test over
-				
-				else if (r.nextInt(50) == 0)
+				if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 1));
 				else if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 2));
@@ -94,11 +69,24 @@ public class Chunk {
 	}
 	
 	public void setPieceID(int x, int y, int id) {
-		pieces.put(getGlobalLocationIndex(x, y), new Piece(x, y, id));
+		if (pieces.get(getGlobalLocationIndex(x, y)) == null) {
+			pieces.put(getGlobalLocationIndex(x, y), new Piece(x, y, id));
+		}  else {
+			pieces.get(getGlobalLocationIndex(x, y)).setPieceIDAndMetadata(id, 0);
+		}
+	}
+	
+	public void setPieceIDAndMetadata(int x, int y, int id, int metadata) {
+		setPieceID(x, y, id);
+		pieces.get(getGlobalLocationIndex(x, y)).metadata = metadata;
 	}
 	
 	public int getPieceID(int x, int y) {
-		return pieces.get(getGlobalLocationIndex(x, y)).getPieceID();
+		if (pieces.get(getGlobalLocationIndex(x, y)) == null) {
+			return 0;
+		}  else {
+			return pieces.get(getGlobalLocationIndex(x, y)).getPieceID();
+		}
 	}
 	
 	public Piece getPiece(int x, int y) {
@@ -127,4 +115,5 @@ public class Chunk {
 	public ConcurrentHashMap<Integer,Piece> pieces = new ConcurrentHashMap<Integer,Piece>();
 	
 	public int chunkX, chunkY;
+	
 }

@@ -29,6 +29,12 @@ public class Piece {
 	
 	public void setPieceID(int id) {
 		this.id = id;
+		this.metadata = 0;
+	}
+	
+	public void setPieceIDAndMetadata(int id, int metadata) {
+		this.id = id;
+		this.metadata = metadata;
 	}
 
 	public int getPieceID() {
