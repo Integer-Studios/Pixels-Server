@@ -46,6 +46,6 @@ public class EntityBear extends EntityAlive {
 
 	}
 	
-	float speed = 0.05f;
+	float speed = 0.03f;
 
 }
