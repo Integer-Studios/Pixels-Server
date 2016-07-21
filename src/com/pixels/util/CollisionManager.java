@@ -43,7 +43,6 @@ public class CollisionManager {
 				return;
 			} else {
 				//give up
-				System.out.println("failed to figure out collision");
 				return;
 			}
 			
