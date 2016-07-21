@@ -167,7 +167,6 @@ public class CollisionManager {
 				e2.velocityX = 0;
 				return;
 			} else {
-				System.out.println("you do really have to do all these permutations");
 			}
 			
 		}
