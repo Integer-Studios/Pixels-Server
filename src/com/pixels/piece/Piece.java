@@ -69,6 +69,7 @@ public class Piece {
 		info.add(new PieceInfo());//8, flower
 		info.add(new PieceInfo());//9, cabin
 		info.add(new PieceInfo());//10, cherry
+		info.add(new PieceInfo());//11, cloudberry
 
 	}
 

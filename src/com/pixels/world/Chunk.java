@@ -39,6 +39,8 @@ public class Chunk {
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 8));
 				else if (r.nextInt(100) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 10));
+				else if (r.nextInt(100) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 11));
 				
 			}
 		}
@@ -62,7 +64,7 @@ public class Chunk {
 //				int globalY = (chunkY<<4)+y;
 //				Entity e = w.getEntity(globalX, globalY);
 //				if (e != null)
-//					e.update(w);
+//				ww	e.update(w);
 				
 				
 			}
