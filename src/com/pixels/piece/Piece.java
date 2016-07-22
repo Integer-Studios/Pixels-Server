@@ -70,6 +70,10 @@ public class Piece {
 		info.add(new PieceInfo());//9, cabin
 		info.add(new PieceInfo());//10, cherry
 		info.add(new PieceInfo());//11, cloudberry
+		info.add(new PieceInfo());//12, crowberry
+		info.add(new PieceInfo());//13, tulip
+		info.add(new PieceInfo());//14, pine tall
+		info.add(new PieceInfo());//15, rock 3
 
 	}
 

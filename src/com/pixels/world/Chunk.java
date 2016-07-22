@@ -21,26 +21,42 @@ public class Chunk {
 				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0));
 				
 				Random r = new Random();
+				//grass
 				if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 1));
 				else if (r.nextInt(50) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 2));
-				else if (r.nextInt(100) == 0)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 3));
-				else if (r.nextInt(100) == 0)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 4));
-				else if (r.nextInt(30) == 0)
+				
+				//trees
+				else if (r.nextInt(10) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 5));
-				else if (r.nextInt(30) == 0)
+				else if (r.nextInt(10) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 6));
+				else if (r.nextInt(15) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 14));
 				else if (r.nextInt(40) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 7));
+				
+				//rocks
+				else if (r.nextInt(70) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 3));
+				else if (r.nextInt(70) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 4));
+				else if (r.nextInt(70) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 15));
+				
+				//flowers
 				else if (r.nextInt(100) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 8));
 				else if (r.nextInt(100) == 0)
-					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 10));
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 13));
+				
+				// bushes
 				else if (r.nextInt(100) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 11));
+				else if (r.nextInt(100) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 12));
+				
 				
 			}
 		}
