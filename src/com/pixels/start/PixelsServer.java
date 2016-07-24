@@ -7,6 +7,8 @@ import java.util.Random;
 import com.pixels.communication.CommunicationServer;
 import com.pixels.entity.EntityBear;
 import com.pixels.entity.EntityGob;
+import com.pixels.entity.EntityItem;
+import com.pixels.item.Item;
 import com.pixels.util.Log;
 import com.pixels.util.ThreadName;
 import com.pixels.world.World;
@@ -35,6 +37,9 @@ public class PixelsServer extends Thread {
 		for (int i = 0; i < 3; i++) {
 			new EntityGob(125f+r.nextInt(5), 125f+r.nextInt(5), true);
 		}
+		new EntityItem(Item.cloudberries, 121, 121, true);
+		new EntityItem(Item.crowberries, 122, 122, true);
+		new EntityItem(Item.cloudberries, 123, 123, true);
 		worldThread = new WorldThread(world);
 		worldThread.start();
 		

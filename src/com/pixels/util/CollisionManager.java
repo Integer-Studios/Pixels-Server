@@ -21,6 +21,9 @@ public class CollisionManager {
 		box.setLocation(baseX+e.velocityX, baseY+e.velocityY);
 		if (box.intersects(p.collisionBox)) {
 			
+			if (!e.didCollide(p))
+				return;
+			
 			//see if stopping X velocity fixes collision
 			box.setLocation(baseX, baseY+e.velocityY);
 			if (!box.intersects(p.collisionBox)) {
@@ -66,6 +69,9 @@ public class CollisionManager {
 		box1.setLocation(baseX1+e1.velocityX, baseY1+e1.velocityY);
 		box2.setLocation(baseX2+e2.velocityX, baseY2+e2.velocityY);
 		if (box1.intersects(box2)) {
+			
+			if (!e1.didCollide(e2) || !e2.didCollide(e1))
+				return;
 			
 			//see if stopping e1 X velocity fixes collision
 			box1.setLocation(baseX1, baseY1+e1.velocityY);

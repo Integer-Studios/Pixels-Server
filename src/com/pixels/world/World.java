@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.pixels.entity.Entity;
 import com.pixels.entity.EntityOnlinePlayer;
+import com.pixels.packet.PacketDespawnEntity;
 import com.pixels.packet.PacketSpawnEntity;
 import com.pixels.piece.Piece;
 import com.pixels.player.PlayerManager;
@@ -54,6 +55,25 @@ public class World {
 		entities.add(entity);
 		PlayerManager.broadcastPacket(new PacketSpawnEntity(entity));
 		
+	}
+	
+	public void despawnEntity(Entity e, boolean broadcast) {
+		if (broadcast)
+			PlayerManager.broadcastPacket(new PacketDespawnEntity(e));
+		
+		entities.remove(e.serverID);
+	}
+	
+	public void despawnEntity(int id, boolean broadcast) {
+		if (broadcast)
+			PlayerManager.broadcastPacket(new PacketDespawnEntity(entities.get(id)));
+		
+		entities.remove(id);
+	}
+	
+	public void despawnEntity(Entity entity) {
+		entities.remove(entity.serverID);
+		PlayerManager.broadcastPacket(new PacketDespawnEntity(entity));
 	}
 
 	public Entity getEntity(int entityID) {

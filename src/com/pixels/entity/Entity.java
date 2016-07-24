@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.packet.PacketMoveEntity;
+import com.pixels.piece.Piece;
 import com.pixels.player.PlayerManager;
 import com.pixels.start.PixelsServer;
 import com.pixels.world.World;
@@ -103,6 +104,18 @@ public class Entity {
 		return collisionBox.getHeight();
 	}
 	
+	public boolean didCollide(Entity e) {
+		return true;
+	}
+	
+	public boolean didCollide(Piece p) {
+		return true;
+	}
+	
+	public void despawn() {
+		PixelsServer.world.despawnEntity(this);
+	}
+	
 	public int id, serverID, positionKey;
 	public float posX, posY, prevPosX, prevPosY;
 	public float velocityX, velocityY;
@@ -120,6 +133,7 @@ public class Entity {
 		entityMap.put(2, EntityOnlinePlayer.class);
 		entityMap.put(3, EntityGob.class);
 		entityMap.put(4, EntityBear.class);
+		entityMap.put(5, EntityItem.class);
 		
 	}
 

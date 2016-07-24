@@ -83,4 +83,9 @@ public class PacketHandler {
 		PixelsServer.world.setPieceIDAndMetadata(packet.posX, packet.posY, packet.pieceID, packet.metadata);
 	}
 
+	public static void handlePacketDespawnEntity(PacketDespawnEntity packet) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
