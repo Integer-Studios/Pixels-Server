@@ -71,7 +71,6 @@ public class PacketHandler {
 	}
 
 	public static void handlePacketUpdateWorld(PacketUpdateWorld packet, CommunicationServlet servlet) {
-		// TODO Auto-generated method stub
 		Entity e = PixelsServer.world.getEntity(PlayerManager.getPlayer(packet.userID));
 		e.setPosition(packet.percievedPosX, packet.percievedPosY);
 		packet.chunks = PixelsServer.world.getLoadedChunks(e);
@@ -86,6 +85,10 @@ public class PacketHandler {
 	public static void handlePacketDespawnEntity(PacketDespawnEntity packet) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static void handlePacketHarvestPiece(PacketHarvestPiece packet) {
+		PixelsServer.world.getPiece(packet.x, packet.y).harvest(PixelsServer.world);
 	}
 
 }

@@ -9,8 +9,8 @@ public class EntityAlive extends Entity {
 		super();
 	}
 	
-	public EntityAlive(float x, float y, boolean prop) {
-		super(x, y, prop);
+	public EntityAlive(int i, float x, float y, boolean prop) {
+		super(i, x, y, prop);
 	}
 	
 	public void update(World w) {

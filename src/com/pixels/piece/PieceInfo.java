@@ -1,5 +1,6 @@
 package com.pixels.piece;
 
+import com.pixels.item.Item;
 import com.pixels.world.World;
 
 public class PieceInfo {
@@ -20,7 +21,19 @@ public class PieceInfo {
 
 	}
 	
+	public PieceInfo setOnHarvestID(int i) {
+		onHarvestID = i;
+		return this;
+	}
+	
+	public PieceInfo setHarvestItems(Item[] items) {
+		harvestItems = items;
+		return this;
+	}
+	
 	public float collisionWidth, collisionHeight;
 	public boolean doesCollide = false;
+	public int onHarvestID = 0;
+	public Item[] harvestItems = new Item[0];
 
 }

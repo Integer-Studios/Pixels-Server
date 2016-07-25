@@ -13,21 +13,18 @@ public class PacketSpawnEntity extends Packet {
 	
 	public PacketSpawnEntity(Entity e) {
 		this.id = 6;
-		serverID = e.serverID;
-		entityID = e.id;
-		positionKey = e.positionKey;
-		posX = e.posX;
-		posY = e.posY;
+		this.e = e;
 	}
 
 	@Override
 	public void writeData(CommunicationServlet servlet) throws IOException {
 
-		servlet.getOutput().writeInt(serverID);
-		servlet.getOutput().writeInt(entityID);
-		servlet.getOutput().writeInt(positionKey);
-		servlet.getOutput().writeFloat(posX);
-		servlet.getOutput().writeFloat(posY);
+		servlet.getOutput().writeInt(e.serverID);
+		servlet.getOutput().writeInt(e.id);
+		servlet.getOutput().writeInt(e.positionKey);
+		servlet.getOutput().writeFloat(e.posX);
+		servlet.getOutput().writeFloat(e.posY);
+		e.writeEntityData(servlet);
 		
 	}
 
@@ -37,7 +34,6 @@ public class PacketSpawnEntity extends Packet {
 		
 	}
 	
-	int serverID, entityID, positionKey;
-	float posX, posY;
+	public Entity e;
 
 }

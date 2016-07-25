@@ -7,6 +7,7 @@ import com.pixels.entity.Entity;
 import com.pixels.entity.EntityOnlinePlayer;
 import com.pixels.packet.PacketDespawnEntity;
 import com.pixels.packet.PacketSpawnEntity;
+import com.pixels.packet.PacketUpdatePiece;
 import com.pixels.piece.Piece;
 import com.pixels.player.PlayerManager;
 import com.pixels.util.CollisionManager;
@@ -70,11 +71,6 @@ public class World {
 		
 		entities.remove(id);
 	}
-	
-	public void despawnEntity(Entity entity) {
-		entities.remove(entity.serverID);
-		PlayerManager.broadcastPacket(new PacketDespawnEntity(entity));
-	}
 
 	public Entity getEntity(int entityID) {
 		return entities.get(entityID);
@@ -104,6 +100,7 @@ public class World {
 	
 	public void setPieceID(int x, int y, int id) {
 		getChunk(x, y).setPieceID(x, y, id);
+		PlayerManager.broadcastPacket(new PacketUpdatePiece(getPiece(x, y)));
 	}
 	
 	public void setPieceIDAndMetadata(int x, int y, int id, int metadata) {

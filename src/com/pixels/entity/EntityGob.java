@@ -14,8 +14,7 @@ public class EntityGob extends EntityAlive {
 	}
 	
 	public EntityGob(float x, float y, boolean prop) {
-		super(x, y, prop);
-		this.id = 3;
+		super(3, x, y, prop);
 		body = new BodyBiped(this, 0.75f, 1.1875f);
 	}
 	

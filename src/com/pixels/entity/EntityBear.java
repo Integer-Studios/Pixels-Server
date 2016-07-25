@@ -9,11 +9,11 @@ public class EntityBear extends EntityAlive {
 	
 	public EntityBear() {
 		this.id = 4;
+		body = new BodyQuadruped(this, 1.5f, 1.448f);
 	}
 	
 	public EntityBear(float x, float y, boolean prop) {
-		super(x, y, prop);
-		this.id = 4;
+		super(4, x, y, prop);
 		body = new BodyQuadruped(this, 1.5f, 1.448f);
 	}
 	

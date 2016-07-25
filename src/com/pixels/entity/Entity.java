@@ -18,7 +18,8 @@ public class Entity {
 		collisionBox = new Rectangle(0, 0, 0, 0);
 	}
 	
-	public Entity(float x, float y, boolean prop) {
+	public Entity(int i, float x, float y, boolean prop) {
+		id = i;
 		posX = x;
 		posY = y;
 		collisionBox = new Rectangle(0, 0, 0, 0);
@@ -113,7 +114,7 @@ public class Entity {
 	}
 	
 	public void despawn() {
-		PixelsServer.world.despawnEntity(this);
+		PixelsServer.world.despawnEntity(this, true);
 	}
 	
 	public int id, serverID, positionKey;

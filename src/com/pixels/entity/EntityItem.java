@@ -6,21 +6,21 @@ import org.newdawn.slick.geom.Rectangle;
 
 import com.pixels.communication.CommunicationServlet;
 import com.pixels.item.Item;
+import com.pixels.packet.PacketPickupItem;
+import com.pixels.player.PlayerManager;
 
 public class EntityItem extends Entity {
 	
 	public EntityItem(Item i, float x, float y, boolean prop) {
-		super(x,y,prop);
-		this.id = 5;
+		super(5, x,y,prop);
 		item = i;
 		collisionBox = new Rectangle(0, 0, 0.25f, 0.25f);
 	}
 	
 	public boolean didCollide(Entity e) {
-		System.out.println("o");
 		if (e instanceof EntityOnlinePlayer) {
-			System.out.println("yo");
 			despawn();
+			PlayerManager.sendPacketToPlayer(new PacketPickupItem(item), ((EntityOnlinePlayer)e).userID);
 			return false;
 		}
 		return true;

@@ -19,6 +19,10 @@ public class PlayerManager {
 		return players.get(userID);
 	}
 	
+	public static void sendPacketToPlayer(Packet p, int userID) {
+		connections.get(userID).addPacket(p);
+	}
+	
 	public static void broadcastPacket(Packet p) {
 		for (CommunicationServlet servlet : connections.values()) {
 			servlet.addPacket(p);
