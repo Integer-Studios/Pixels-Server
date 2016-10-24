@@ -23,7 +23,7 @@ public class EntityOnlinePlayer extends EntityAlive {
 		if (prop)
 			PixelsServer.world.propogatePlayer(this);
 	}
-
+	
 	public int userID;
 
 }

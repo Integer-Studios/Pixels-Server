@@ -54,7 +54,7 @@ public class CollisionManager {
 	}
 	
 	public static void testEntityCollision(Entity e1, Entity e2) {
-
+		
 		Rectangle box1 = e1.collisionBox;
 		
 		float baseX1 = e1.posX - (box1.getWidth()/2);
@@ -69,6 +69,8 @@ public class CollisionManager {
 		box1.setLocation(baseX1+e1.velocityX, baseY1+e1.velocityY);
 		box2.setLocation(baseX2+e2.velocityX, baseY2+e2.velocityY);
 		if (box1.intersects(box2)) {
+			
+			System.out.println("entities do collide");
 			
 			if (!e1.didCollide(e2) || !e2.didCollide(e1))
 				return;

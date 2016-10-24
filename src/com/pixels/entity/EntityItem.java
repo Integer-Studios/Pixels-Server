@@ -18,6 +18,7 @@ public class EntityItem extends Entity {
 	}
 	
 	public boolean didCollide(Entity e) {
+		System.out.println("did collide");
 		if (e instanceof EntityOnlinePlayer) {
 			despawn();
 			PlayerManager.sendPacketToPlayer(new PacketPickupItem(item), ((EntityOnlinePlayer)e).userID);

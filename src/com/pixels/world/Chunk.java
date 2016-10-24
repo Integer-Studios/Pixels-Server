@@ -18,7 +18,7 @@ public class Chunk {
 		for (int y = 0; y < 16; y++) {
 			for (int x = 0; x < 16; x++) {
 				
-				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0));
+				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0, 0));
 				
 				Random r = new Random();
 				//grass
@@ -109,6 +109,10 @@ public class Chunk {
 		return pieces.get(getGlobalLocationIndex(x, y));
 	}
 	
+	public Tile getTile(int x, int y) {
+		return tiles.get(getGlobalLocationIndex(x, y));
+	}
+	
 	private int getGlobalLocationIndex(int x, int y) {
 		int localX = x - (chunkX << 4);
 		int localY = y - (chunkY << 4);
@@ -131,5 +135,6 @@ public class Chunk {
 	public ConcurrentHashMap<Integer,Piece> pieces = new ConcurrentHashMap<Integer,Piece>();
 	
 	public int chunkX, chunkY;
+
 	
 }

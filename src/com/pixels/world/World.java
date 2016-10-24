@@ -98,6 +98,18 @@ public class World {
 
 	}
 	
+	public void setElevation(int x, int y, int e) {
+		getChunk(x, y).getTile(x, y).elevation = e;
+	}
+	
+	public int getElevation(int x, int y) {
+		Chunk c = getChunk(x, y);
+		if (c == null)
+			return 0;
+		else
+			return c.getTile(x, y).elevation;
+	}
+	
 	public void setPieceID(int x, int y, int id) {
 		getChunk(x, y).setPieceID(x, y, id);
 		PlayerManager.broadcastPacket(new PacketUpdatePiece(getPiece(x, y)));
