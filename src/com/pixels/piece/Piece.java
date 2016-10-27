@@ -88,6 +88,8 @@ public class Piece {
 		info.add(new PieceInfo().setOnHarvestID(4));//15, rock 3
 		info.add(new PieceInfo());//16, cloudberry picked
 		info.add(new PieceInfo());//17, crowberry picked
+		info.add(new PieceInfo());//18, shroom
+		info.add(new PieceInfo());//19, gaub building
 
 	}
 

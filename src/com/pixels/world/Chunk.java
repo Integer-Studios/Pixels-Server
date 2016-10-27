@@ -47,6 +47,8 @@ public class Chunk {
 				
 				//flowers
 				else if (r.nextInt(100) == 0)
+					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 18));
+				else if (r.nextInt(100) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 8));
 				else if (r.nextInt(100) == 0)
 					pieces.put(getLocalLocationIndex(x, y), new Piece((chunkX << 4) + x, (chunkY << 4) + y, 13));
