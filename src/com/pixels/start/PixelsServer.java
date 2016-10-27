@@ -2,7 +2,10 @@ package com.pixels.start;
 
 
 
+import java.util.Random;
+
 import com.pixels.communication.CommunicationServer;
+import com.pixels.entity.EntityBear;
 import com.pixels.util.Log;
 import com.pixels.util.ThreadName;
 import com.pixels.world.World;
@@ -24,10 +27,10 @@ public class PixelsServer extends Thread {
 
 		// Start World Thread
 		world = new World(20, 20);
-//		Random r = new Random();
-//		for (int i = 0; i < 3; i++) {
-//			new EntityBear(115f+r.nextInt(5), 115f+r.nextInt(5), true);
-//		}
+		Random r = new Random();
+		for (int i = 0; i < 1; i++) {
+			new EntityBear(115f+r.nextInt(5), 115f+r.nextInt(5), true);
+		}
 //		for (int i = 0; i < 3; i++) {
 //			new EntityGob(125f+r.nextInt(5), 125f+r.nextInt(5), true);
 //		}
