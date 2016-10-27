@@ -47,7 +47,6 @@ public class EntityBear extends EntityAlive {
 			}
 			
 			float distance = (int)Math.sqrt((target.posX-posX)*(target.posX-posX) + (target.posY-posY)*(target.posY-posY));
-			System.out.println(distance);
 			if (distance <= 0.4F) {
 				velocityX = 0f;
 				velocityY = 0f;
