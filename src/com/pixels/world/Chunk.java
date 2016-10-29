@@ -11,14 +11,14 @@ public class Chunk {
 	public Chunk(int x, int y) {
 		chunkX = x;
 		chunkY = y;
-		generateChunk();
+//		generateChunk();
 	}
 	
 	public void generateChunk() {
 		for (int y = 0; y < 16; y++) {
 			for (int x = 0; x < 16; x++) {
 				
-				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0, 0));
+				tiles.put(getLocalLocationIndex(x, y), new Tile((chunkX << 4) + x, (chunkY << 4) + y, 0, 0, 113, 65));
 				
 				Random r = new Random();
 				//grass
@@ -63,6 +63,8 @@ public class Chunk {
 			}
 		}
 	}
+	
+	
 	
 	public void update(World w) {
 		
@@ -111,8 +113,16 @@ public class Chunk {
 		return pieces.get(getGlobalLocationIndex(x, y));
 	}
 	
+	public void setPiece(int x, int y, Piece p) {
+		pieces.put(getGlobalLocationIndex(x, y), p);
+	}
+	
 	public Tile getTile(int x, int y) {
 		return tiles.get(getGlobalLocationIndex(x, y));
+	}
+	
+	public void setTile(int x, int y, Tile t) {
+		tiles.put(getGlobalLocationIndex(x, y), t);
 	}
 	
 	private int getGlobalLocationIndex(int x, int y) {

@@ -68,6 +68,8 @@ public class PacketWorldData extends Packet {
 	public void writeTile(Tile tile, CommunicationServlet servlet) throws IOException {
 		servlet.getOutput().writeInt(tile.id);
 		servlet.getOutput().writeInt(tile.elevation);
+		servlet.getOutput().writeInt(tile.humidity);
+		servlet.getOutput().writeInt(tile.tempurature);
 	}
 	
 	public void writePiece(Piece piece, CommunicationServlet servlet) throws IOException {
