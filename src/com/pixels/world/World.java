@@ -79,54 +79,57 @@ public class World {
 		for (int y = 0; y < chunkHeight<<4; y++) {
 			for (int x = 0; x < chunkWidth<<4; x++) {
 				
-				int id = getTileID(x, y);
-				if (id != 1) {
+				Tile t = getTile(x, y);
+				Piece.generatePiece(this, t);
 				
-				int elevation = getElevation(x, y);
-				int down = getElevation(x, y+1);
-				if (down - elevation >= 0) {
-				
-				Random r = new Random();
-				//grass
-				if (r.nextInt(50) == 0)
-					setPiece(x, y, new Piece(x, y, 1));
-				else if (r.nextInt(50) == 0)
-					setPiece(x, y, new Piece(x, y, 2));
-				
-				//trees
-				else if (r.nextInt(20) == 0)
-					setPiece(x, y, new Piece(x, y, 5));
-				else if (r.nextInt(20) == 0)
-					setPiece(x, y, new Piece(x, y, 6));
-				else if (r.nextInt(25) == 0)
-					setPiece(x, y, new Piece(x, y, 14));
-				else if (r.nextInt(50) == 0)
-					setPiece(x, y, new Piece(x, y, 7));
-				
-				//rocks
-				else if (r.nextInt(70) == 0)
-					setPiece(x, y, new Piece(x, y, 3));
-				else if (r.nextInt(70) == 0)
-					setPiece(x, y, new Piece(x, y, 4));
-				else if (r.nextInt(70) == 0)
-					setPiece(x, y, new Piece(x, y, 15));
-				
-				//flowers
-				else if (r.nextInt(100) == 0)
-					setPiece(x, y, new Piece(x, y, 18));
-				else if (r.nextInt(100) == 0)
-					setPiece(x, y, new Piece(x, y, 8));
-				else if (r.nextInt(100) == 0)
-					setPiece(x, y, new Piece(x, y, 13));
-				
-				// bushes
-				else if (r.nextInt(100) == 0)
-					setPiece(x, y, new Piece(x, y, 11));
-				else if (r.nextInt(100) == 0)
-					setPiece(x, y, new Piece(x, y, 12));
-				
-				}
-				}
+//				int id = getTileID(x, y);
+//				if (id != 1) {
+//				
+//				int elevation = getElevation(x, y);
+//				int down = getElevation(x, y+1);
+//				if (down - elevation >= 0) {
+//				
+//				Random r = new Random();
+//				//grass
+//				if (r.nextInt(50) == 0)
+//					setPiece(x, y, new Piece(x, y, 1));
+//				else if (r.nextInt(50) == 0)
+//					setPiece(x, y, new Piece(x, y, 2));
+//				
+//				//trees
+//				else if (r.nextInt(20) == 0)
+//					setPiece(x, y, new Piece(x, y, 5));
+//				else if (r.nextInt(20) == 0)
+//					setPiece(x, y, new Piece(x, y, 6));
+//				else if (r.nextInt(25) == 0)
+//					setPiece(x, y, new Piece(x, y, 14));
+//				else if (r.nextInt(50) == 0)
+//					setPiece(x, y, new Piece(x, y, 7));
+//				
+//				//rocks
+//				else if (r.nextInt(70) == 0)
+//					setPiece(x, y, new Piece(x, y, 3));
+//				else if (r.nextInt(70) == 0)
+//					setPiece(x, y, new Piece(x, y, 4));
+//				else if (r.nextInt(70) == 0)
+//					setPiece(x, y, new Piece(x, y, 15));
+//				
+//				//flowers
+//				else if (r.nextInt(100) == 0)
+//					setPiece(x, y, new Piece(x, y, 18));
+//				else if (r.nextInt(100) == 0)
+//					setPiece(x, y, new Piece(x, y, 8));
+//				else if (r.nextInt(100) == 0)
+//					setPiece(x, y, new Piece(x, y, 13));
+//				
+//				// bushes
+//				else if (r.nextInt(100) == 0)
+//					setPiece(x, y, new Piece(x, y, 11));
+//				else if (r.nextInt(100) == 0)
+//					setPiece(x, y, new Piece(x, y, 12));
+//				
+//				}
+//				}
 			}
 		}
 	}
@@ -247,6 +250,10 @@ public class World {
 	
 	public int getTileID(int x, int y) {
 		return getChunk(x, y).getTile(x, y).id;
+	}
+	
+	public Tile getTile(int x, int y) {
+		return getChunk(x, y).getTile(x, y);
 	}
 	
 	public Chunk getChunk(int x, int y) {

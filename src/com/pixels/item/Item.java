@@ -21,12 +21,18 @@ public class Item {
 		switch (id) {
 		case 0:return cloudberries;
 		case 1:return crowberries;
+		case 2:return poppyHead;
+		case 3:return rootFiber;
+		case 4:return stone;
 		}
 		return null;
 	}
 	
 	public static Item cloudberries = new Item(0, "cloudberry");
 	public static Item crowberries = new Item(1, "crowberry");
+	public static Item poppyHead = new Item(2, "poppy-head");
+	public static Item rootFiber = new Item(3, "root-fiber");
+	public static Item stone = new Item(4, "stone");
 	
 	public String name;
 	public int id, weight;

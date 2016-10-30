@@ -7,6 +7,8 @@ import org.newdawn.slick.geom.Rectangle;
 
 import com.pixels.entity.EntityItem;
 import com.pixels.item.Item;
+import com.pixels.tile.Tile;
+import com.pixels.world.Climate;
 import com.pixels.world.World;
 
 public class Piece {
@@ -65,6 +67,15 @@ public class Piece {
 		}
 	}
 	
+	public static void generatePiece(World w, Tile t) {
+		
+		for (int i = 1; i < info.size(); i++) {
+			if (info.get(i).attemptToGenerate(w, t, i))
+				break;
+		}
+		
+	}
+	
 	public int posX, posY, id, metadata;
 	public static ArrayList<PieceInfo> info = new ArrayList<PieceInfo>();
 	public Rectangle collisionBox;
@@ -73,23 +84,23 @@ public class Piece {
 		info.add(new PieceInfo());//0, blank
 		info.add(new PieceInfo());//1, grass 1
 		info.add(new PieceInfo());//2, grass 2
-		info.add(new PieceInfo(0.2f, 0.1f));//3, rock 1
-		info.add(new PieceInfo(0.4f, 0.2f).setOnHarvestID(3));//4, rock 2
-		info.add(new PieceInfo(0.1f, 0.2f));//5, pine
+		info.add(new PieceInfo(0.2f, 0.1f).setHarvestItems(new Item[]{Item.stone}));//3, rock 1
+		info.add(new PieceInfo(0.4f, 0.2f).setOnHarvestID(3).setHarvestItems(new Item[]{Item.stone}));//4, rock 2
+		info.add(new PieceInfo(0.1f, 0.2f).setClimate(Climate.snow));//5, pine
 		info.add(new PieceInfo(0.1f, 0.2f));//6, apple
-		info.add(new PieceInfo(0.1f, 0.2f));//7, abyssal fir
+		info.add(new PieceInfo(0.1f, 0.2f).setClimate(Climate.jungle));//7, abyssal fir
 		info.add(new PieceInfo());//8, flower
-		info.add(new PieceInfo());//9, cabin
-		info.add(new PieceInfo());//10, cherry
-		info.add(new PieceInfo().setOnHarvestID(16).setHarvestItems(new Item[]{Item.cloudberries}));//11, cloudberry
-		info.add(new PieceInfo().setOnHarvestID(17).setHarvestItems(new Item[]{Item.crowberries}));//12, crowberry
-		info.add(new PieceInfo());//13, tulip
-		info.add(new PieceInfo());//14, pine tall
-		info.add(new PieceInfo().setOnHarvestID(4));//15, rock 3
-		info.add(new PieceInfo());//16, cloudberry picked
-		info.add(new PieceInfo());//17, crowberry picked
-		info.add(new PieceInfo());//18, shroom
-		info.add(new PieceInfo());//19, gaub building
+		info.add(new PieceInfo().setNaturallyOccurring(false));//9, cabin
+		info.add(new PieceInfo().setClimate(Climate.deciduousForest));//10, cherry
+		info.add(new PieceInfo().setOnHarvestID(16).setHarvestItems(new Item[]{Item.cloudberries}).setClimate(Climate.deciduousForest));//11, cloudberry
+		info.add(new PieceInfo().setOnHarvestID(17).setHarvestItems(new Item[]{Item.crowberries}).setClimate(Climate.lowlandSnow));//12, crowberry
+		info.add(new PieceInfo().setHarvestItems(new Item[]{Item.poppyHead}).setClimate(Climate.lowlandDesert));//13, tulip
+		info.add(new PieceInfo().setClimate(Climate.tundra));//14, pine tall
+		info.add(new PieceInfo().setOnHarvestID(4).setHarvestItems(new Item[]{Item.stone}).setClimate(Climate.tundra));//15, rock 3
+		info.add(new PieceInfo().setNaturallyOccurring(false));//16, cloudberry picked
+		info.add(new PieceInfo().setNaturallyOccurring(false));//17, crowberry picked
+		info.add(new PieceInfo().setClimate(Climate.jungle));//18, shroom
+		info.add(new PieceInfo().setNaturallyOccurring(false));//19, gaub building
 
 	}
 

@@ -28,7 +28,7 @@ public class PixelsServer extends Thread {
 		new Thread(server).start();
 
 		// Start World Thread
-		world = new World("test");
+		world = new World("lunumia");
 		Random r = new Random();
 		for (int i = 0; i < 3; i++) {
 			new EntityBear(50f+r.nextInt(5), 50f+r.nextInt(5), true);
