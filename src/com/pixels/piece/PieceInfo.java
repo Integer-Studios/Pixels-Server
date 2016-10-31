@@ -51,33 +51,22 @@ public class PieceInfo {
 		return this;
 	}
 	
-	public boolean attemptToGenerate(World w, Tile t, int id) {
+	public int attemptToGenerate(World w, Tile t, int id) {
 		
 		// no spawning on cliffs ever
 		int down = w.getElevation(t.posX, t.posY+1);
 		if (down - t.elevation < 0)
-			return false;
-		
-		Random r = new Random();
-		//check climate
-		if (r.nextInt(100) < climate.isInClimate(t)) {
-			
-			if (r.nextInt(10000) < rarity) {
-				w.setPiece(t.posX, t.posY, new Piece(t.posX, t.posY, id));
-				return true;
-			}
-		}
-		
-		return false;
+			return 0;
+				
+		return climate.isInClimate(t);
 	}
 	
 	public float collisionWidth, collisionHeight;
 	public boolean doesCollide = false;
 	public int onHarvestID = 0;
-	public int rarity = 200;
-	public boolean spwansInWater;
+	public int rarity = Piece.pieceRarity;
 	public Item[] harvestItems = new Item[0];
-	public Climate climate = Climate.everywhere;
+	public Climate climate = Climate.nowhere;
 	
 	
 
